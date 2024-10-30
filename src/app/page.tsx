@@ -1,10 +1,11 @@
+import AuthWrapper from '@/Wrappers/AuthWrapper'
 import React from 'react'
 
 const Home = () => {
   return (
-    <div>
-      Hello home
-    </div>
+    <AuthWrapper>
+      Hii
+    </AuthWrapper>
   )
 }
 

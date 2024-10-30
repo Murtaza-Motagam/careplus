@@ -7,10 +7,11 @@ import GoogleLogo from '@/Icons/GoogleLogo';
 import Input from '@/widgets/Input';
 import Button from '@/widgets/Button';
 import Link from 'next/link';
-import { authenticationRoutes } from '@/lib/routes';
+import basicRoutes, { authenticationRoutes } from '@/lib/routes';
 import LoginIcon from '@/Icons/LoginIcon';
 import PasswordInput from '@/widgets/PasswordInput';
 import useRegister from './useRegister';
+import NextLink from '@/widgets/NextLink';
 
 const Register = () => {
 
@@ -21,11 +22,11 @@ const Register = () => {
             <div className="flex flex-col md:flex-row h-screen w-full">
                 <div className="w-full md:w-1/2 flex flex-col justify-center items-center p-6 md:p-10">
                     <div className="max-w-sm w-full">
-                        <div className="flex justify-center mb-8">
+                        <div className="flex justify-center mb-2">
                             <NextLogo size='120px' />
                         </div>
-                        <h2 className="text-3xl font-semibold text-gray-800 mb-2">Welcome to Next-Auth!</h2>
-                        <p className="text-gray-600 mb-8">Register to get unlimited access to data & information.</p>
+                        <h2 className="text-3xl font-semibold mb-2">Welcome to Next-Auth!</h2>
+                        <p className="text-gray-400 mb-8">Register to get unlimited access to data & information.</p>
                         <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
                             <Input
                                 rest={register('email')}
@@ -53,12 +54,12 @@ const Register = () => {
                                 className='w-full rounded-sm'
                             />
                         </form>
-                        <div className="my-6 text-center text-gray-500">Or, Signup with</div>
-                        <button className="w-full flex items-center justify-center border border-gray-300 py-2 rounded-md text-gray-700 gap-x-2">
+                        <div className="my-6 text-center text-gray-400"><NextLink title='Visit Home' className='text-primary hover:underline' href={basicRoutes.home}/> Or, Signup with</div>
+                        <button className="w-full flex items-center justify-center border border-gray-300 py-2 rounded-md text-gray-300 gap-x-2">
                             <GoogleLogo />
                             Sign up with Google
                         </button>
-                        <p className="text-center text-gray-600 mt-6">
+                        <p className="text-center text-gray-400 mt-6">
                             Already a member? <Link href={authenticationRoutes.login} className="text-md text-purple-700 hover:underline">Login</Link>
                         </p>
                     </div>

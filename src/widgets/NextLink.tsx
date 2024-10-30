@@ -4,7 +4,7 @@ import React from 'react'
 
 const NextLink = ({title, className, target, href}: LinkProps) => {
   return (
-    <Link href={href} classsName={className} target={target}>{title}</Link>
+    <Link href={href} className={className} target={target}>{title}</Link>
   )
 }
 

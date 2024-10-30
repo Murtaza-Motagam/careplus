@@ -44,7 +44,7 @@ export interface ButtonProps {
 
 export interface LinkProps {
     title: string;
-    href?: URL;
+    href?: Url;
     className?: string;
     target?: string;
 }
@@ -58,4 +58,9 @@ export interface RegisterValues {
 export interface loginValues {
     email: string;
     password: string;
+}
+
+export interface AuthWrapperProps {
+    children: React.ReactNode;
+    parentClassName?: string;
 }
