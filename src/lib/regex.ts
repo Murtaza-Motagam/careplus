@@ -1,0 +1,1 @@
+export const passwordValidate = /^(?=.*\d)(?=.*[!#$%&*@^])(?=.*[a-z])(?=.*[A-Z])[\d!#$%&*@A-Z^a-z]{8,}$/
