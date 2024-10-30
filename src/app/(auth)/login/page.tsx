@@ -14,17 +14,16 @@ import useLogin from './useLogin';
 import NextLink from '@/widgets/NextLink';
 
 const Login = () => {
-  const { onSubmit, handleSubmit, register, errors } = useLogin();
+    const { onSubmit, handleSubmit, register, errors } = useLogin();
     return (
         <>
             <div className="flex flex-col md:flex-row h-screen w-full">
                 <div className="w-full md:w-1/2 flex flex-col justify-center items-center p-6 md:p-10">
                     <div className="max-w-sm w-full">
-                        <div className="flex justify-center mb-2">
-                            <NextLogo size='120px' />
-                        </div>
-                        <h2 className="text-3xl font-semibold mb-2">Welcome back!</h2>
-                        <p className="dark:text-gray-400 mb-8">Enter to get unlimited access to data & information.</p>
+                        <h2 className="text-2xl md:text-3xl flex items-center gap-x-5 flex-wrap font-semibold">WELCOME TO
+                            <span className='text-primary'><NextLogo className='invert -my-4' size='100' /> </span>
+                        </h2>
+                        <p className="text-primary text-sm mb-8">Enter to get unlimited access to data & information.</p>
                         <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
                             <Input
                                 rest={register('email')}
@@ -43,16 +42,16 @@ const Login = () => {
                                 type='submit'
                                 icon={<LoginIcon size={24} className='' />}
                                 title='Login'
-                                className='w-full rounded-sm'
+                                className='w-full rounded-sm dark:text-white'
                             />
                         </form>
-                        <div className="my-6 text-center text-gray-400"><NextLink title='Visit Home' className='text-primary hover:underline' href={basicRoutes.home}/> Or, Login with</div>
+                        <div className="my-6 text-center text-gray-400"><NextLink title='Visit Home' className='text-primary hover:underline' href={basicRoutes.home} /> Or, Login with</div>
                         <button className="w-full flex items-center justify-center border border-gray-300 py-2 rounded-md text-gray-300 gap-x-2">
                             <GoogleLogo />
-                           Login with Google
+                            Login with Google
                         </button>
                         <p className="text-center text-gray-400 mt-6">
-                            Don't have an account yet? <Link href={authenticationRoutes.register} className="text-md text-purple-400 hover:underline">Register</Link>
+                            Don't have an account yet? <Link href={authenticationRoutes.register} className="text-md text-primary hover:underline">Register</Link>
                         </p>
                     </div>
                 </div>

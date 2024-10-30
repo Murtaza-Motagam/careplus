@@ -5,7 +5,10 @@ export const authenticationRoutes = {
 
 const basicRoutes = {
     home: '/',
-    aboutUs: '/about-us'
+    aboutUs: '/about',
+    consultation: '/consultation',
+    services: '/services',
+    explore: '/explore',
 }
 
 export default basicRoutes

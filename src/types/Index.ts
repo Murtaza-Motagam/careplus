@@ -29,6 +29,19 @@ export interface PasswordType {
     errors?: string;
     rest?: any;
 }
+export interface CheckBoxTypeProps {
+    label?: string;
+    parentClassName?: string;
+    className?: string;
+    id?: string;
+    value?: any;
+    htmlFor?: string;
+    register?: string;
+    checked?: boolean;
+    errors?: string;
+    disabled?: boolean;
+    rest?: any;
+}
 
 export interface ButtonProps {
     type?: "button" | "submit" | "reset";
@@ -53,6 +66,7 @@ export interface RegisterValues {
     email: string;
     password: string;
     confirmPassword: string;
+    terms?: any;
 }
 
 export interface loginValues {
