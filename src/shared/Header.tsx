@@ -21,7 +21,7 @@ const Header = () => {
     const { theme } = useTheme();
 
     return (
-        <header className="w-full flex items-center justify-between p-4 shadow-md sticky top-0 backdrop-blur-md z-20">
+        <header className="w-full flex items-center justify-between p-4 shadow-md sticky top-0 backdrop-blur-lg z-20">
             <div className="logo cursor-pointer flex items-center gap-x-1" onClick={() => router.push(basicRoutes.home)}>
                 <Image
                     src={Logo}

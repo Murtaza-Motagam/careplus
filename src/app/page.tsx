@@ -4,6 +4,8 @@ import { doctors } from '@/lib/common'
 import basicRoutes from '@/lib/routes'
 import Button from '@/widgets/Button'
 import AuthWrapper from '@/Wrappers/AuthWrapper'
+import Image from 'next/image'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import React from 'react'
 
@@ -64,6 +66,119 @@ const Home = () => {
           ))}
         </ul>
       </div>
+
+      {/* Card Component */}
+
+      <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto !mt-20">
+        <h1 className='text-2xl md:text-4xl mb-5 text-center font-bold uppercase'>Explore Our Latest Insights on Telehealth</h1>
+        <HrTag />
+        <div className="grid lg:grid-cols-2 lg:gap-y-16 gap-10 mt-10">
+          <Link className="group block rounded-xl overflow-hidden focus:outline-none" href="/">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5">
+              <div className="shrink-0 relative rounded-xl overflow-hidden w-full sm:w-56 h-44">
+                <Image
+                  className="group-hover:scale-105 group-focus:scale-105 transition-transform duration-500 ease-in-out absolute top-0 left-0 object-cover rounded-xl" src="https://images.unsplash.com/photo-1554168153-e74124abd88f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=320&q=80"
+                  alt="Telehealth Blog Image"
+                  fill
+                />
+              </div>
+              <div className="grow">
+                <h3 className="text-xl font-semibold text-gray-800 group-hover:text-gray-600 dark:text-neutral-300 dark:group-hover:text-white">
+                  Benefits of Virtual Consultations
+                </h3>
+                <p className="mt-3 text-gray-600 dark:text-neutral-400">
+                  Discover how virtual consultations make healthcare accessible from the comfort of your home.
+                </p>
+                <p className="mt-4 inline-flex items-center gap-x-1 text-sm text-blue-600 decoration-2 group-hover:underline group-focus:underline font-medium dark:text-blue-500">
+                  Read more
+                  <svg className="shrink-0 w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+                    <path d="M9 18l6-6-6-6" />
+                  </svg>
+                </p>
+              </div>
+            </div>
+          </Link>
+
+          <Link className="group block rounded-xl overflow-hidden focus:outline-none" href="/">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5">
+              <div className="shrink-0 relative rounded-xl overflow-hidden w-full sm:w-56 h-44">
+                <Image
+                  className="group-hover:scale-105 group-focus:scale-105 transition-transform duration-500 ease-in-out absolute top-0 left-0 object-cover rounded-xl" src="https://images.unsplash.com/photo-1567016526105-22da7c13161a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=320&q=80"
+                  alt="Telehealth Blog Image"
+                  fill
+                />
+              </div>
+              <div className="grow">
+                <h3 className="text-xl font-semibold text-gray-800 group-hover:text-gray-600 dark:text-neutral-300 dark:group-hover:text-white">
+                  How Telemedicine Enhances Mental Health Support
+                </h3>
+                <p className="mt-3 text-gray-600 dark:text-neutral-400">
+                  Explore how telehealth is revolutionizing mental health treatment with convenient, confidential sessions.
+                </p>
+                <p className="mt-4 inline-flex items-center gap-x-1 text-sm text-blue-600 decoration-2 group-hover:underline group-focus:underline font-medium dark:text-blue-500">
+                  Read more
+                  <svg className="shrink-0 w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+                    <path d="M9 18l6-6-6-6" />
+                  </svg>
+                </p>
+              </div>
+            </div>
+          </Link>
+
+          <Link className="group block rounded-xl overflow-hidden focus:outline-none" href="/">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5">
+              <div className="shrink-0 relative rounded-xl overflow-hidden w-full sm:w-56 h-44">
+                <Image
+                  className="group-hover:scale-105 group-focus:scale-105 transition-transform duration-500 ease-in-out absolute top-0 left-0 object-cover rounded-xl" src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=320&q=80"
+                  alt="Telehealth Blog Image"
+                  fill
+                />
+              </div>
+              <div className="grow">
+                <h3 className="text-xl font-semibold text-gray-800 group-hover:text-gray-600 dark:text-neutral-300 dark:group-hover:text-white">
+                  The Future of Remote Healthcare
+                </h3>
+                <p className="mt-3 text-gray-600 dark:text-neutral-400">
+                  Discover how remote healthcare is transforming the future of medicine and accessibility for patients.
+                </p>
+                <p className="mt-4 inline-flex items-center gap-x-1 text-sm text-blue-600 decoration-2 group-hover:underline group-focus:underline font-medium dark:text-blue-500">
+                  Read more
+                  <svg className="shrink-0 w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+                    <path d="M9 18l6-6-6-6" />
+                  </svg>
+                </p>
+              </div>
+            </div>
+          </Link>
+
+          <Link className="group block rounded-xl overflow-hidden focus:outline-none" href="/">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5">
+              <div className="shrink-0 relative rounded-xl overflow-hidden w-full sm:w-56 h-44">
+                <Image
+                  className="group-hover:scale-105 group-focus:scale-105 transition-transform duration-500 ease-in-out absolute top-0 left-0 object-cover rounded-xl" src="https://images.unsplash.com/photo-1540575861501-7cf05a4b125a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=320&q=80"
+                  alt="Telehealth Blog Image"
+                  fill
+                />
+              </div>
+              <div className="grow">
+                <h3 className="text-xl font-semibold text-gray-800 group-hover:text-gray-600 dark:text-neutral-300 dark:group-hover:text-white">
+                  Top Tips for Using Telehealth Effectively
+                </h3>
+                <p className="mt-3 text-gray-600 dark:text-neutral-400">
+                  Maximize your telehealth visits with our expert tips for a smooth, productive experience.
+                </p>
+                <p className="mt-4 inline-flex items-center gap-x-1 text-sm text-blue-600 decoration-2 group-hover:underline group-focus:underline font-medium dark:text-blue-500">
+                  Read more
+                  <svg className="shrink-0 w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+                    <path d="M9 18l6-6-6-6" />
+                  </svg>
+                </p>
+              </div>
+            </div>
+          </Link>
+        </div>
+      </div>
+
     </AuthWrapper >
   )
 }
