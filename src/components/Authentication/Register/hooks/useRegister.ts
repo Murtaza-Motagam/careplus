@@ -6,28 +6,29 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 const useRegister = () => {
 
     const defaultValues: RegisterValues = {
+        registerType: 'patient',
         email: '',
         password: '',
-        confirmPassword: '',
-        terms: '',
+        confirmPassword: ''
     }
 
     const { register, reset, handleSubmit, formState: { errors } } = useForm({
         defaultValues,
         resolver: yupResolver(registerSchema)
     });
+
     console.log(errors)
 
-    const onSubmit: SubmitHandler<RegisterValues> = async (data) => {
+    const onSubmit = async (data: RegisterValues) => {
         console.log(data)
         reset(defaultValues)
     }
 
+    const hookform = { handleSubmit, register, errors};
+
     return {
         onSubmit,
-        handleSubmit,
-        register,
-        errors,
+        hookform,
     }
 }
 

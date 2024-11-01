@@ -11,9 +11,11 @@ import LoginIcon from '@/Icons/LoginIcon';
 import PasswordInput from '@/widgets/PasswordInput';
 import useLogin from './hooks/useLogin';
 import NextLink from '@/widgets/NextLink';
+import Radio from '@/widgets/Radio';
+import { ReloadIcon } from '@radix-ui/react-icons';
 
 const Login = () => {
-    const { onSubmit, handleSubmit, register, errors } = useLogin();
+    const { onSubmit, handleSubmit, register, errors, loading } = useLogin();
     return (
         <>
             <div className="flex flex-col md:flex-row h-screen w-full">
@@ -24,6 +26,20 @@ const Login = () => {
                         </h2>
                         <p className="text-primary text-sm mb-8">Enter to get unlimited access to data & information.</p>
                         <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
+                            <div className="flex items-center space-x-4">
+                                <Radio
+                                    label="Patient"
+                                    value="patient"
+                                    id="patient"
+                                    rest={register('registerType')}
+                                />
+                                <Radio
+                                    label="Physician"
+                                    value="physician"
+                                    id="physician"
+                                    rest={register('registerType')}
+                                />
+                            </div>
                             <Input
                                 rest={register('email')}
                                 label='Email'
@@ -39,12 +55,15 @@ const Login = () => {
                             />
                             <Button
                                 type='submit'
-                                icon={<LoginIcon size={24} className='' />}
-                                title='Login'
+                                icon={loading ?
+                                    <ReloadIcon className="mr-2 h-4 w-4 animate-spin" /> :
+                                    <LoginIcon size={24} className='' />
+                                }
+                                title={loading ? '' : 'Login'}
                                 className='w-full rounded-sm dark:text-white'
                             />
                         </form>
-                        <div className="my-6 text-center dark:text-gray-400"><NextLink title='Visit Home' className='text-primary hover:underline' href={basicRoutes.home} /> Or, Login with</div>
+                        <div className="my-6 text-center dark:text-gray-400"><NextLink title='Visit Home' className='text-primary hover:underline' href={basicRoutes.home} /> Or Login with</div>
                         <button className="w-full flex items-center justify-center border border-gray-300 py-2 rounded-md gap-x-2 dark:text-gray-200">
                             <GoogleLogo />
                             Login with Google

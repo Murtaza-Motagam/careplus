@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 export const metadata: Metadata = {
   title: "Careplus, India's leading telehealth service provider",
@@ -29,6 +31,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
+        <ToastContainer />
         </ThemeProvider>
       </body>
     </html>

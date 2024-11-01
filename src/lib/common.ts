@@ -1,3 +1,6 @@
+import { toast, Slide, ToastOptions } from 'react-toastify';
+import Cookies from 'js-cookie';
+
 export const navLinks = [
     {
         name: 'Consultation',
@@ -56,6 +59,9 @@ export const doctors = [
     },
 ];
 
+export const isAuthenticated = () => {
+    return !!Cookies.get('Authorization-token');
+};
 
 export const getActiveClass = (route: string, pathname: string, mode: string | undefined) => {
     const isActive = pathname === route;
@@ -69,4 +75,34 @@ export const getActiveClassMobile = (route: string, pathname: string, mode: stri
     const colorClass = mode === 'light' ? 'text-primary' : 'text-white';
 
     return `py-3 hover:border-2 hover:border-primary font-medium text-sm ${isActive ? colorClass : 'text-gray-700 hover:text-primary dark:text-gray-400 dark:hover:text-white'}`;
+};
+
+type ToastType = 'success' | 'info' | 'error' | 'warn';
+
+const toastTypes: Record<ToastType, (message: string, options?: ToastOptions) => void> = {
+    success: toast.success,
+    info: toast.info,
+    error: toast.error,
+    warn: toast.warn,
+};
+
+export const showToast = (
+    message: string,
+    type: ToastType = 'success',
+    position: ToastOptions['position'] = 'top-right',
+    autoClose: number = 3000
+) => {
+    const toastType = toastTypes[type];
+
+    toastType(message, {
+        position: position,
+        autoClose: autoClose,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        transition: Slide,
+    });
 };

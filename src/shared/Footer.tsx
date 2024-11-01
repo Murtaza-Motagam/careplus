@@ -43,7 +43,7 @@ const Footer: React.FC = () => {
                     <div className="col-span-2">
                         <h4 className="font-semibold">Stay up to date</h4>
                         <form>
-                            <div className="mt-4 flex flex-col items-center gap-2 sm:flex-row sm:gap-3 bg-white rounded-lg p-2 dark:bg-neutral-900">
+                            <div className="mt-4 flex flex-col items-center gap-2 sm:flex-row sm:gap-3 rounded-lg p-2">
                                 <div className="w-full">
                                     <label htmlFor="hero-input" className="sr-only">Subscribe</label>
                                     <Input
@@ -51,7 +51,7 @@ const Footer: React.FC = () => {
                                         type='email'
                                     />
                                 </div>
-                                <Button title='Subscribe' className='rounded-lg mt-1.5'/>
+                                <Button title='Subscribe' className='rounded-lg mt-1.5 dark:text-gray-200'/>
                             </div>
                             <p className="mt-3 text-sm text-gray-400">New UI kits or big discounts. Never spam.</p>
                         </form>

@@ -11,11 +11,14 @@ import LoginIcon from '@/Icons/LoginIcon';
 import PasswordInput from '@/widgets/PasswordInput';
 import useRegister from '../../../components/Authentication/Register/hooks/useRegister';
 import NextLink from '@/widgets/NextLink';
-import CheckBox from '@/widgets/CheckBox';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Label } from '@/components/ui/label';
+import Radio from '@/widgets/Radio';
 
 const Register = () => {
 
-    const { onSubmit, handleSubmit, register, errors } = useRegister();
+    const { onSubmit, hookform } = useRegister();
+    const { handleSubmit, register, errors } = hookform;
 
     return (
         <>
@@ -27,6 +30,20 @@ const Register = () => {
                         </h2>
                         <p className="text-gray-400 mb-8 text-sm">Register to get unlimited access to data & information.</p>
                         <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
+                            <div className="flex items-center space-x-4">
+                                <Radio
+                                    label="Patient"
+                                    value="patient"
+                                    id="patient"
+                                    rest={register('registerType')}
+                                />
+                                <Radio
+                                    label="Physician"
+                                    value="physician"
+                                    id="physician"
+                                    rest={register('registerType')}
+                                />
+                            </div>
                             <Input
                                 rest={register('email')}
                                 label='Email'
@@ -46,12 +63,6 @@ const Register = () => {
                                 placeholder='Please confirm password'
                                 errors={errors?.confirmPassword?.message}
                             />
-                            <CheckBox
-                                label='Accept our terms and conditions'
-                                htmlFor='terms'
-                                id='terms'
-                                rest={register('terms')}
-                            />
                             <Button
                                 type='submit'
                                 icon={<LoginIcon size={24} className='' />}
@@ -59,7 +70,7 @@ const Register = () => {
                                 className='w-full rounded-sm dark:text-white'
                             />
                         </form>
-                        <div className="my-6 text-center text-gray-400"><NextLink title='Visit Home' className='text-primary hover:underline' href={basicRoutes.home} /> Or, Signup with</div>
+                        <div className="my-6 text-center text-gray-400"><NextLink title='Visit Home' className='text-primary hover:underline' href={basicRoutes.home} /> Or Signup with</div>
                         <button className="w-full flex items-center justify-center border border-gray-300 py-2 rounded-md  gap-x-2 dark:text-gray-200">
                             <GoogleLogo />
                             Sign up with Google
