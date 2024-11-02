@@ -92,3 +92,14 @@ export interface RadioButtonProps {
     disabled?: boolean;
     rest?: any;
 }
+
+export interface AppointmentProps {
+    fullName: string ;              
+    dob: Date;                    
+    gender: 'Male' | 'Female' | 'Other'; 
+    mobNo: string;                
+    email: string;                 
+    city: string;                 
+    state: string;
+    country: string;
+}

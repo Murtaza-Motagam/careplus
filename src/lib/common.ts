@@ -3,8 +3,8 @@ import Cookies from 'js-cookie';
 
 export const navLinks = [
     {
-        name: 'Consultation',
-        href: '/consultation',
+        name: 'Appointments',
+        href: '/patient/appointments',
     },
     {
         name: 'Explore',

@@ -4,11 +4,11 @@ import React from 'react'
 import { InputType } from '@/types/Index';
 import InfoIcon from '@/Icons/InfoIcon'
 
-const Input = ({ label, placeholder, type, parentClassName, errors, rest }: InputType) => {
+const Input = ({ label, placeholder, type, className, parentClassName, errors, rest }: InputType) => {
     return (
         <div className={`grid w-full max-w-sm items-center gap-1.5 ${parentClassName}`}>
             <Label htmlFor={label}>{label}</Label>
-            <Inputs className={`${errors && 'border-2 border-red-500'} focus:!outline-none focus:ring-0 foucs:outline-0`} placeholder={placeholder} type={type} {...rest} />
+            <Inputs className={`${errors && 'border-2 border-red-500'} focus:!outline-none focus:ring-0 foucs:outline-0 ${className}`} placeholder={placeholder} type={type} {...rest} />
             {errors && (
                 <div className="flex items-center justify-start">
                     <InfoIcon size={14} className='text-red-600' />
