@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import React from 'react';
 import LoginImg from '@/assets/loginImage.jpg';
 import Image from 'next/image';
@@ -14,10 +14,11 @@ import NextLink from '@/widgets/NextLink';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import Radio from '@/widgets/Radio';
+import { ReloadIcon } from '@radix-ui/react-icons';
 
 const Register = () => {
 
-    const { onSubmit, hookform } = useRegister();
+    const { onSubmit, hookform, loading } = useRegister();
     const { handleSubmit, register, errors } = hookform;
 
     return (
@@ -65,8 +66,11 @@ const Register = () => {
                             />
                             <Button
                                 type='submit'
-                                icon={<LoginIcon size={24} className='' />}
-                                title='Register'
+                                icon={loading ?
+                                    <ReloadIcon className="mr-2 h-4 w-4 animate-spin" /> :
+                                    <LoginIcon size={24} className='' />
+                                }
+                                title={loading ? '' : 'Register'}
                                 className='w-full rounded-sm dark:text-white'
                             />
                         </form>

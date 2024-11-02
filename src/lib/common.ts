@@ -86,6 +86,10 @@ const toastTypes: Record<ToastType, (message: string, options?: ToastOptions) =>
     warn: toast.warn,
 };
 
+export const capitalizeFirstLetter = (string: string) =>
+    `${string?.charAt(0)?.toUpperCase()}${string?.slice(1)}`;
+  
+
 export const showToast = (
     message: string,
     type: ToastType = 'success',

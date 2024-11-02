@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import { SheetContent, SheetTitle } from '@/components/ui/sheet';
 import { getActiveClassMobile, navLinks } from '@/lib/common';
 import basicRoutes from '@/lib/routes';

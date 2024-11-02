@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import { Button as ButtonWidget } from '@/components/ui/button'
 import { ButtonProps } from '@/types/Index'

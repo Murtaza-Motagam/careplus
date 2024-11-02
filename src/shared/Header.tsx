@@ -4,7 +4,7 @@ import basicRoutes, { authenticationRoutes, patientRoutes } from '@/lib/routes'
 import Button from '@/widgets/Button'
 import NextLink from '@/widgets/NextLink'
 import HamburgerIcon from '@/Icons/HamburgerIcon'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import MobileHeader from './MobileHeader'
 import { ModeToggle } from '@/components/ui/ModeToggle'
@@ -14,16 +14,25 @@ import Image from 'next/image'
 import LoginIcon from '@/Icons/LoginIcon'
 import Logo from '@/assets/logo.png'
 import useHeader from './hooks/useHeader'
-import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuPortal, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuSub, DropdownMenuSubContent, DropdownMenuSubTrigger, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
+import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
+import Loader from '@/widgets/Loader'
+import TextToImage from '@/widgets/TextToImage'
 
 const Header = () => {
+
+    const [isUser, setIsUser] = useState<boolean>(false);
 
     const router = useRouter();
     const pathname = usePathname();
     const { theme } = useTheme();
 
-    const { user, logout } = useHeader();
-    const authenticated = isAuthenticated();
+    const { user, logout, loading } = useHeader();
+    const { emailId, firstName, profilePic } = user;
+
+    useEffect(() => {
+        const authenticated = isAuthenticated();
+        setIsUser(authenticated);
+    }, [])
 
     return (
         <header className="w-full flex items-center justify-between p-4 shadow-md sticky top-0 backdrop-blur-lg z-20">
@@ -59,46 +68,44 @@ const Header = () => {
                         </SheetContent>
                     </Sheet>
                 </div>
-                <div className="md:hidden w-10 h-10 rounded-full overflow-hidden cursor-pointer border-2 border-primary  relative group">
-                    <Image
-                        src="https://images.unsplash.com/photo-1685903772095-f07172808761?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" // Replace with your image path
-                        alt="User Profile"
-                        layout="responsive"
-                        width={40}
-                        height={40}
-                    />
-                    <div className="absolute inset-0 bg-primary opacity-0 group-hover:opacity-20 transition-opacity duration-300 rounded-full"></div>
-                </div>
-                <div className="sideNavigation hidden md:flex items-center gap-x-2">
-                    <ModeToggle />
-                    {!authenticated ? (
-
+                {loading ? (
+                    <Loader />
+                ) : (
+                    !isUser ? (
                         <Button
                             icon={
                                 <LoginIcon className='' />
-                            } onClick={() => router.push(authenticationRoutes.login)} title='Login' className='rounded-2xl px-5 font-semibold text-sm dark:text-white'
+                            }
+                            onClick={() => router.push(authenticationRoutes.login)}
+                            title='Login'
+                            className='rounded-[6px] md:hidden px-5 font-semibold text-sm dark:text-white'
                         />
                     ) : (
                         <DropdownMenu>
-                            <DropdownMenuTrigger asChild>
-                                {/* <Button variant="outline">Open</Button> */}
-                                <div className="w-10 h-10 rounded-full overflow-hidden cursor-pointer border-2 border-primary  relative group">
-                                    <Image
-                                        src="https://images.unsplash.com/photo-1685903772095-f07172808761?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" // Replace with your image path
-                                        alt="User Profile"
-                                        layout="responsive"
-                                        width={40}
-                                        height={40}
-                                    />
+                            <DropdownMenuTrigger>
+                                <div className="rounded-full md:hidden overflow-hidden cursor-pointer border-2 border-primary  relative group">
+                                    {profilePic ? (
+
+                                        <Image
+                                            src="https://images.unsplash.com/photo-1685903772095-f07172808761?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" // Replace with your image path
+                                            alt="User Profile"
+                                            layout="responsive"
+                                            width={40}
+                                            height={40}
+                                        />
+                                    ) : (
+                                        <TextToImage nameText={emailId} />
+                                    )}
                                     <div className="absolute inset-0 bg-primary opacity-0 group-hover:opacity-20 transition-opacity duration-300 rounded-full"></div>
                                 </div>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent className="w-56 mr-10">
-                                <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                                <DropdownMenuSeparator />
+                                <DropdownMenuLabel className='dark:text-gray-200'>My Account</DropdownMenuLabel>
+                                <p className='text-xs ml-2 dark:text-gray-400'>{emailId}</p>
+                                <DropdownMenuSeparator className='bg-gray-200 mb-3 dark:bg-gray-800 mt-2' />
                                 <DropdownMenuGroup>
                                     <DropdownMenuItem
-                                        className='cursor-pointer'
+                                        className='cursor-pointer dark:text-gray-200 dark:hover:text-white'
                                         onClick={() => router.push(patientRoutes.profile)}
                                     >
                                         My Profile
@@ -106,16 +113,71 @@ const Header = () => {
                                 </DropdownMenuGroup>
                                 <DropdownMenuItem
                                     className='text-red-500 hover:!text-red-500 cursor-pointer'
-                                    onClick={()=>logout()}
+                                    onClick={() => logout()}
                                 >
                                     Logout
                                 </DropdownMenuItem>
                             </DropdownMenuContent>
                         </DropdownMenu>
-                    )}
+                    )
+                )}
+                <div className="sideNavigation hidden md:flex items-center gap-x-2" suppressHydrationWarning>
+                    <ModeToggle />
+                    {loading ? (
+                        <Loader />
+                    ) : (
+                        !isUser ? (
+                            <Button
+                                icon={
+                                    <LoginIcon className='' />
+                                }
+                                onClick={() => router.push(authenticationRoutes.login)}
+                                title='Login'
+                                className='rounded-[6px] px-5 font-semibold text-sm dark:text-white'
+                            />
+                        ) : (
+                            <DropdownMenu>
+                                <DropdownMenuTrigger asChild>
+                                    <div className=" rounded-full overflow-hidden cursor-pointer border-2 border-primary  relative group">
+                                        {profilePic ? (
+
+                                            <Image
+                                                src="https://images.unsplash.com/photo-1685903772095-f07172808761?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" // Replace with your image path
+                                                alt="User Profile"
+                                                layout="responsive"
+                                                width={40}
+                                                height={40}
+                                            />
+                                        ) : (
+                                            <TextToImage nameText={emailId} />
+                                        )}
+                                        <div className="absolute inset-0 bg-primary opacity-0 group-hover:opacity-20 transition-opacity duration-300 rounded-full"></div>
+                                    </div>
+                                </DropdownMenuTrigger>
+                                <DropdownMenuContent className="w-56 mr-10">
+                                    <DropdownMenuLabel className='dark:text-gray-200'>My Account</DropdownMenuLabel>
+                                    <p className='text-xs ml-2 dark:text-gray-400'>{emailId}</p>
+                                    <DropdownMenuSeparator className='bg-gray-200 mb-3 dark:bg-gray-800 mt-2' />
+                                    <DropdownMenuGroup>
+                                        <DropdownMenuItem
+                                            className='cursor-pointer dark:text-gray-200 dark:hover:text-white'
+                                            onClick={() => router.push(patientRoutes.profile)}
+                                        >
+                                            My Profile
+                                        </DropdownMenuItem>
+                                    </DropdownMenuGroup>
+                                    <DropdownMenuItem
+                                        className='text-red-500 hover:!text-red-500 cursor-pointer'
+                                        onClick={() => logout()}
+                                    >
+                                        Logout
+                                    </DropdownMenuItem>
+                                </DropdownMenuContent>
+                            </DropdownMenu>
+                        ))}
                 </div>
-            </div>
-        </header>
+            </div >
+        </header >
     )
 }
 
