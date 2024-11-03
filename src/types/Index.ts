@@ -102,4 +102,5 @@ export interface AppointmentProps {
     city: string;                 
     state: string;
     country: string;
+    address: string;
 }

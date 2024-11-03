@@ -1,8 +1,7 @@
 'use client';
 import { appointmentStepper } from '@/lib/constant'
 import AuthWrapper from '@/Wrappers/AuthWrapper'
-import React from 'react'
-import useAppointment from './hooks/useAppointment';
+import React, { useState } from 'react'
 import PatientDetails from './StepForm/PatientDetails';
 import ChooseDoctor from './StepForm/ChooseDoctor';
 import AppointmentDetails from './StepForm/AppointmentDetails';
@@ -10,8 +9,7 @@ import Confirmation from './StepForm/Confirmation';
 import Payment from './StepForm/Payment';
 
 const BookApointments = () => {
-
-    const { activeStep, setActiveStep, hookform, onsubmit } = useAppointment();
+    const [activeStep, setActiveStep] = useState(1);
 
     return (
         <AuthWrapper>
@@ -38,13 +36,13 @@ const BookApointments = () => {
 
                 </div>
                 {/* Form */}
-                <form onSubmit={hookform.handleSubmit(onsubmit)} className="col-span-10 mt-10 mx-10">
-                    {activeStep === 1 && <PatientDetails hookform={hookform}/>}
+                <div className="w-full col-span-10 mt-10 px-7">
+                    {activeStep === 1 && <PatientDetails />}
                     {activeStep === 2 && <ChooseDoctor />}
                     {activeStep === 3 && <AppointmentDetails />}
                     {activeStep === 4 && <Confirmation />}
                     {activeStep === 5 && <Payment />}
-                </form>
+                </div>
             </div>
         </AuthWrapper>
     )

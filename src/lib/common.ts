@@ -1,5 +1,6 @@
 import { toast, Slide, ToastOptions } from 'react-toastify';
 import Cookies from 'js-cookie';
+import dayjs from 'dayjs';
 
 export const navLinks = [
     {
@@ -110,3 +111,10 @@ export const showToast = (
         transition: Slide,
     });
 };
+
+export const dateTimeDisplay = (date: Date, locale = 'en', format = 'DD MMM YYYY hh:mm A') => {
+    if (date) {
+      return dayjs(date).locale(locale).format(format);
+    }
+  };
+  

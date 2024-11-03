@@ -1,38 +1,66 @@
 'use client';
 import Button from '@/widgets/Button';
 import Input from '@/widgets/Input'
-import React from 'react'
+import React, { useState } from 'react'
+import usePatientDetail from '../hooks/usePatientDetail';
+import DatePicker from '@/widgets/DatePicker';
+import dynamic from 'next/dynamic';
+import { genderOption } from '@/lib/constant';
+const SingleSelect = dynamic(() => import('@/widgets/SingleSelect'), { ssr: false });
 
-interface PatientDetailsProps {
-  hookform: {
-    register: any;
-    errors: any;
-  };
-}
-
-const PatientDetails: React.FC<PatientDetailsProps> = ({ hookform }) => {
-  const { register, errors } = hookform;
+const PatientDetails: React.FC = () => {
+  const { hookform, onsubmit } = usePatientDetail();
+  const { register, handleSubmit, errors, control } = hookform;
 
   return (
-    <div className="w-full">
-      <h1 className='text-lg md:text-xl mb-2 font-semibold'>Patient Details</h1>
+    <form onSubmit={handleSubmit(onsubmit)} className="w-full">
+      <h1 className='text-lg md:text-xl mb-2 font-semibold dark:text-gray-200'>Patient Details</h1>
       <hr />
-      <div className='w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-5'>
+      <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-5 mx-auto'>
         <Input
           rest={register('fullName')}
+          label='Full name'
           placeholder='Enter full name'
           className='rounded-[3px]'
           type='text'
           errors={errors?.fullName?.message}
         />
-        <Button
-          type='button'
-          title='Next'
-          // onClick={handleNext}
-          className='w-full rounded-sm dark:text-white'
+        <Input
+          rest={register('email')}
+          label='Email'
+          placeholder='Enter your email'
+          className='rounded-[3px]'
+          type='email'
+          errors={errors?.email?.message}
         />
+        <Input
+          rest={register('mobNo')}
+          label='Contact number'
+          placeholder='Enter mobile number'
+          className='rounded-[3px]'
+          type='number'
+          errors={errors?.mobNo?.message}
+        />
+        <DatePicker
+          name="dob"
+          label='Date of Birth'
+          control={control}
+          placeholder="Select Date of Birth"
+        />
+        {/* <SingleSelect
+          label='Gender'
+          options={genderOption}
+          placeholder='Select Gender'
+          rest={register('gender')}
+          errors={errors?.gender?.message}
+        /> */}
       </div>
-    </div>
+      <Button
+          type='submit'
+          title='Next'
+          className='rounded-sm mt-5 dark:text-white'
+        />
+    </form>
   )
 }
 

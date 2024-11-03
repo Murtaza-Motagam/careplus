@@ -23,6 +23,12 @@ export const appointmentStepper = [
     { index: 5, name: "Payment", subtext: "Complete Appointment" }
 ];
 
+export const genderOption = [
+    { value: 'male', label: 'Male' },
+    { value: 'female', label: 'Female' },
+    { value: 'other', label: 'Other' }
+];
+
 export const patient = 'patient';
 export const physician = 'physician';
 

@@ -1,8 +1,10 @@
+import React, { useEffect } from 'react'
 import { patientDetailSchema } from '@/schema/appointmentSchema';
 import { AppointmentProps } from '@/types/Index';
 import { yupResolver } from '@hookform/resolvers/yup';
-import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import axios from 'axios';
+
 
 const defaultValues: AppointmentProps = {
     fullName: '',
@@ -13,15 +15,13 @@ const defaultValues: AppointmentProps = {
     city: '',
     state: '',
     country: '',
+    address: '',
 }
 
-const useAppointment = () => {
-    const [activeStep, setActiveStep] = useState(1);
-
-    const schemaStep = [patientDetailSchema];
+const usePatientDetail = () => {
 
     const { register, handleSubmit, setValue, trigger, clearErrors, watch, control, formState: { errors } } = useForm<AppointmentProps>({
-        resolver: yupResolver(schemaStep[activeStep]),
+        resolver: yupResolver(patientDetailSchema),
         defaultValues,
     });
 
@@ -29,15 +29,16 @@ const useAppointment = () => {
         console.log(data)
     }
 
+    // useEffect(() => {
+    //     fetchCountries();
+    // }, [])
+
     const hookform = { register, handleSubmit, setValue, clearErrors, trigger, watch, control, errors };
 
-
     return {
-        activeStep,
-        setActiveStep,
         hookform,
         onsubmit,
     }
 }
 
-export default useAppointment;
+export default usePatientDetail

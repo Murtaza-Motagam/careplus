@@ -12,4 +12,5 @@ export const patientDetailSchema = yup.object().shape({
     city: yup.string().trim().required('City is required'),
     state: yup.string().trim().required('State is required'),
     country: yup.string().trim().required('Country is required'),
+    address: yup.string().trim().required('Address is required'),
 });
