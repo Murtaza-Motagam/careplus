@@ -93,14 +93,21 @@ export interface RadioButtonProps {
     rest?: any;
 }
 
-export interface AppointmentProps {
-    fullName: string ;              
-    dob: Date;                    
-    gender: 'Male' | 'Female' | 'Other'; 
-    mobNo: string;                
-    email: string;                 
-    city: string;                 
+export interface Gender {
+    value: string;
+    label: string;
+  }
+
+  export interface AppointmentProps {
+    fullName: string;
+    email: string;
+    mobNo: string;
+    dob: Date;
+    genderId: string;
+    genderNm?: string;
+    address: string; // Make sure this is not optional
+    city: string;
     state: string;
     country: string;
-    address: string;
-}
+  }
+  

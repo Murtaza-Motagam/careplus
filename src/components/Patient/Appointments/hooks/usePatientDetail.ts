@@ -9,7 +9,8 @@ import axios from 'axios';
 const defaultValues: AppointmentProps = {
     fullName: '',
     dob: new Date(),
-    gender: 'Male',
+    genderId: '',
+    genderNm: '',
     mobNo: '',
     email: '',
     city: '',
