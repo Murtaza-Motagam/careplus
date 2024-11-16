@@ -19,8 +19,8 @@ const BookApointments = () => {
                     <ol className="relative border-s border-gray-200 dark:border-gray-700">
                         {appointmentStepper.map((st) => {
                             return (
-                                <li key={st.index} className="mb-10 ms-6 cursor-pointer">
-                                    <span className={`absolute flex items-center justify-center w-8 h-8 ${activeStep >= st.index && 'bg-green-500 text-white'} rounded-full -start-4 ring-4 ring-white dark:ring-gray-900 hover:opacity-70`}>
+                                <li onClick={() => setActiveStep(st.index)} key={st.index} className="mb-10 ms-6 cursor-pointer">
+                                    <span className={`absolute flex items-center justify-center w-8 h-8 ${activeStep > st.index && 'bg-green-500 text-white'} ${activeStep === st.index && 'bg-gray-400 dark:bg-gray-600 text-white'} rounded-full -start-4 ring-4 ring-white dark:ring-gray-900 hover:opacity-70`}>
                                         {activeStep > st.index ? (
                                             <svg className="w-3.5 h-3.5 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
                                                 <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5.917 5.724 10.5 15 1.5" />

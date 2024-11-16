@@ -6,7 +6,6 @@ import usePatientDetail from '../hooks/usePatientDetail';
 import DatePicker from '@/widgets/DatePicker';
 import dynamic from 'next/dynamic';
 import { genderOption } from '@/lib/constant';
-const SingleSelect = dynamic(() => import('@/widgets/SingleSelect'), { ssr: false });
 
 const PatientDetails: React.FC = () => {
   const { hookform, onsubmit } = usePatientDetail();
@@ -47,18 +46,11 @@ const PatientDetails: React.FC = () => {
           control={control}
           placeholder="Select Date of Birth"
         />
-        {/* <SingleSelect
-          label='Gender'
-          options={genderOption}
-          placeholder='Select Gender'
-          rest={register('gender')}
-          errors={errors?.gender?.message}
-        /> */}
       </div>
       <Button
           type='submit'
-          title='Next'
-          className='rounded-sm mt-5 dark:text-white'
+          title='Confirm Details'
+          className='!rounded-full mt-5 px-7 dark:text-white'
         />
     </form>
   )
