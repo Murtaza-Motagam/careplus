@@ -13,9 +13,10 @@ const defaultValues: AppointmentProps = {
     genderNm: '',
     mobNo: '',
     email: '',
-    city: '',
-    state: '',
-    country: '',
+    cityId: '',
+    cityNm: '',
+    stateId: '',
+    stateNm: '',
     address: '',
 }
 

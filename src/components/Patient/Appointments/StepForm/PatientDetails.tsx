@@ -5,8 +5,9 @@ import React, { useState } from 'react'
 import usePatientDetail from '../hooks/usePatientDetail';
 import DatePicker from '@/widgets/DatePicker';
 import dynamic from 'next/dynamic';
-import { genderOption } from '@/lib/constant';
+import { citiesOption, genderOption, statesOption } from '@/lib/constant';
 import SingleSelect from '@/widgets/SingleSelect';
+import Loader from '@/widgets/Loader';
 
 const PatientDetails: React.FC = () => {
   const { hookform, onsubmit } = usePatientDetail();
@@ -55,6 +56,22 @@ const PatientDetails: React.FC = () => {
           placeholder="Select your gender"
           error={errors.genderId?.message}
         />
+        <SingleSelect
+          name="stateId"
+          control={control}
+          options={statesOption}
+          label="State"
+          placeholder="Select your state"
+          error={errors.stateId?.message}
+        />
+        <SingleSelect
+          name="cityId"
+          control={control}
+          options={citiesOption}
+          label="City"
+          placeholder="Select your city"
+          error={errors.cityId?.message}
+        />
         <Input
           rest={register('address')}
           label='Address'
@@ -63,13 +80,16 @@ const PatientDetails: React.FC = () => {
           type='text'
           errors={errors?.address?.message}
         />
-
       </div>
-      <Button
-        type='submit'
-        title='Confirm Details'
-        className='!rounded-full mt-5 px-7 dark:text-white'
-      />
+      <div className="w-full mt-10 flex items-center justify-center">
+        <Button
+          type='submit'
+          title='Confirm Details'
+          variant='outline'
+          className='w-1/4 !rounded-[6px] mt-5 px-7 py-6 dark:text-white'
+          // icon={ <Loader /> }
+        />
+      </div>
     </form>
   )
 }

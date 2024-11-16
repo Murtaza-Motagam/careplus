@@ -15,8 +15,9 @@ export const patientDetailSchema = yup.object().shape({
         .matches(mobNoValidate, 'Contact number must be exactly 10 digits')
         .required('Contact number is required'),
     email: yup.string().email('Invalid email format').required('Email is required'),
-    city: yup.string().trim().required('City is required'),
-    state: yup.string().trim().required('State is required'),
-    country: yup.string().trim().required('Country is required'),
+    cityId: yup.string().trim().required('City is required'),
+    cityNm: yup.string().optional(),
+    stateId: yup.string().trim().required('State is required'),
+    stateNm: yup.string().optional(),
     address: yup.string().trim().required('Address is required'),
 });

@@ -1,15 +1,44 @@
 'use client';
 import { appointmentStepper } from '@/lib/constant'
 import AuthWrapper from '@/Wrappers/AuthWrapper'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import PatientDetails from './StepForm/PatientDetails';
 import ChooseDoctor from './StepForm/ChooseDoctor';
 import AppointmentDetails from './StepForm/AppointmentDetails';
 import Confirmation from './StepForm/Confirmation';
 import Payment from './StepForm/Payment';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { patientRoutes } from '@/lib/routes';
+import PageLoader from '@/widgets/PageLoader';
 
 const BookApointments = () => {
     const [activeStep, setActiveStep] = useState(1);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
+    const router = useRouter();
+    const searchParams = useSearchParams()
+    const searchQuery = searchParams.get('tab')
+
+    const stepChange = (e: number) => {
+        router.push(`${patientRoutes.bookAppointment}?tab=${e}`);
+    };
+
+    const handleSelectStepper = (index: number) => {
+        stepChange(index)
+    }
+
+    useEffect(() => {
+        if (searchQuery !== undefined && searchQuery && typeof searchQuery === 'string') {
+            setActiveStep(parseInt(searchQuery));
+        } else {
+            setActiveStep(1);
+            stepChange(1);
+        }
+        setIsLoading(false);
+    }, [searchQuery]);
+
+    if (isLoading) {
+        return <PageLoader />;
+    }
 
     return (
         <AuthWrapper>
@@ -19,7 +48,7 @@ const BookApointments = () => {
                     <ol className="relative border-s border-gray-200 dark:border-gray-700">
                         {appointmentStepper.map((st) => {
                             return (
-                                <li onClick={() => setActiveStep(st.index)} key={st.index} className="mb-10 ms-6 cursor-pointer">
+                                <li onClick={() => handleSelectStepper(st.index)} key={st.index} className="mb-10 ms-6 cursor-pointer">
                                     <span className={`absolute flex items-center justify-center w-8 h-8 ${activeStep > st.index && 'bg-green-500 text-white'} ${activeStep === st.index && 'bg-gray-400 dark:bg-gray-600 text-white'} rounded-full -start-4 ring-4 ring-white dark:ring-gray-900 hover:opacity-70`}>
                                         {activeStep > st.index ? (
                                             <svg className="w-3.5 h-3.5 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">

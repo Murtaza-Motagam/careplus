@@ -106,8 +106,9 @@ export interface Gender {
     genderId: string;
     genderNm?: string;
     address: string; // Make sure this is not optional
-    city: string;
-    state: string;
-    country: string;
+    cityId: string;
+    cityNm?: string;
+    stateId: string;
+    stateNm?: string;
   }
   
