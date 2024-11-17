@@ -103,12 +103,12 @@ export interface Gender {
     email: string;
     mobNo: string;
     dob: Date;
-    genderId: string;
-    genderNm?: string;
+    genderId?: string;
+    genderNm: string;
     address: string; // Make sure this is not optional
-    cityId: string;
-    cityNm?: string;
-    stateId: string;
-    stateNm?: string;
+    cityId?: string;
+    cityNm: string;
+    stateId?: string;
+    stateNm: string;
   }
   

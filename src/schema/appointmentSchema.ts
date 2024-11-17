@@ -8,16 +8,16 @@ export const patientDetailSchema = yup.object().shape({
         .date()
         .required('Date of birth is required')
         .typeError('Invalid date format'),
-    genderId: yup.string().required('Gender is required'),
-    genderNm: yup.string().optional(),
+    genderNm: yup.string().required('Gender is required'),
+    genderId: yup.string().optional(),
     mobNo: yup
         .string()
-        .matches(mobNoValidate, 'Contact number must be exactly 10 digits')
+        .matches(mobNoValidate, 'Must be 10 digits')
         .required('Contact number is required'),
     email: yup.string().email('Invalid email format').required('Email is required'),
-    cityId: yup.string().trim().required('City is required'),
-    cityNm: yup.string().optional(),
-    stateId: yup.string().trim().required('State is required'),
-    stateNm: yup.string().optional(),
+    cityNm: yup.string().trim().required('City is required'),
+    cityId: yup.string().optional(),
+    stateNm: yup.string().trim().required('State is required'),
+    stateId: yup.string().optional(),
     address: yup.string().trim().required('Address is required'),
 });

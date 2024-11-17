@@ -10,7 +10,7 @@ import SingleSelect from '@/widgets/SingleSelect';
 import Loader from '@/widgets/Loader';
 
 const PatientDetails: React.FC = () => {
-  const { hookform, onsubmit } = usePatientDetail();
+  const { hookform, onsubmit, loading } = usePatientDetail();
   const { register, handleSubmit, errors, control } = hookform;
 
   return (
@@ -49,28 +49,28 @@ const PatientDetails: React.FC = () => {
           placeholder="Select Date of Birth"
         />
         <SingleSelect
-          name="genderId"
+          name="genderNm"
           control={control}
           options={genderOption}
           label="Gender"
           placeholder="Select your gender"
-          error={errors.genderId?.message}
+          error={errors.genderNm?.message}
         />
         <SingleSelect
-          name="stateId"
+          name="stateNm"
           control={control}
           options={statesOption}
           label="State"
           placeholder="Select your state"
-          error={errors.stateId?.message}
+          error={errors.stateNm?.message}
         />
         <SingleSelect
-          name="cityId"
+          name="cityNm"
           control={control}
           options={citiesOption}
           label="City"
           placeholder="Select your city"
-          error={errors.cityId?.message}
+          error={errors.cityNm?.message}
         />
         <Input
           rest={register('address')}
@@ -87,7 +87,7 @@ const PatientDetails: React.FC = () => {
           title='Confirm Details'
           variant='outline'
           className='w-1/4 !rounded-[6px] mt-5 px-7 py-6 dark:text-white'
-          // icon={ <Loader /> }
+          icon={ loading ? <Loader /> : '' }
         />
       </div>
     </form>

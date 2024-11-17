@@ -57,7 +57,7 @@ const SingleSelect: React.FC<SingleSelectProps> = ({
                   className="w-full justify-between"
                 >
                   {field.value
-                    ? options.find((option) => option.value === field.value)?.label
+                    ? field.value // Directly show the selected label
                     : placeholder}
                   <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                 </Button>
@@ -72,14 +72,14 @@ const SingleSelect: React.FC<SingleSelectProps> = ({
                         <CommandItem
                           key={option.value}
                           onSelect={() => {
-                            field.onChange(option.value); // Update form value
+                            field.onChange(option.label); // Set field value to the label
                             setOpen(false);
                           }}
                         >
                           <Check
                             className={cn(
                               "mr-2 h-4 w-4",
-                              field.value === option.value ? "opacity-100" : "opacity-0"
+                              field.value === option.label ? "opacity-100" : "opacity-0" // Compare with the label
                             )}
                           />
                           {option.label}
