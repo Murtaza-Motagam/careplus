@@ -1,23 +1,16 @@
+import { Textarea } from '@/components/ui/textarea'
+import { TextareaProps } from '@/types/Index'
 import { Label } from '@/components/ui/label';
-import { Input as Inputs } from '@/components/ui/input';
-import React from 'react';
-import { InputType } from '@/types/Index';
+import React from 'react'
 import InfoIcon from '@/Icons/InfoIcon';
 
-const Input = ({ label, placeholder, type, className, parentClassName, errors, showInline, rest }: InputType) => {
+const TextArea = ({ label, placeholder, className, showInline, parentClassName, errors, rest }: TextareaProps) => {
     return (
-        <div className={`grid w-full max-w-sm items-center gap-1.5 ${parentClassName}`}>
+        <div className={`w-full ${parentClassName}`}>
             <Label className="text-gray-900 dark:text-gray-300" htmlFor={label}>
                 {label}
             </Label>
-            <Inputs
-                className={`${errors ? 'border-2 border-red-500' : ''
-                    } focus:!outline-none focus:ring-0 focus:outline-0 ${className}`}
-                placeholder={placeholder}
-                type={type}
-                {...rest}
-            />
-            {/* Always render the error container to maintain consistent height */}
+            <Textarea placeholder={placeholder} className={className} />
             {showInline ? (
                 errors && (
                     <div className="flex items-center justify-start">
@@ -37,9 +30,8 @@ const Input = ({ label, placeholder, type, className, parentClassName, errors, s
                     )}
                 </div>
             )}
-
         </div>
-    );
-};
+    )
+}
 
-export default Input;
+export default TextArea

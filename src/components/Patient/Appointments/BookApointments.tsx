@@ -10,10 +10,12 @@ import Payment from './StepForm/Payment';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { patientRoutes } from '@/lib/routes';
 import PageLoader from '@/widgets/PageLoader';
+import { LocalStorage } from '@/lib/localStorage';
 
 const BookApointments = () => {
     const [activeStep, setActiveStep] = useState(1);
     const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [appointmentId, setAppointmentId] = useState<Number>(0);
     const router = useRouter();
     const searchParams = useSearchParams()
     const searchQuery = searchParams.get('tab')
@@ -35,6 +37,11 @@ const BookApointments = () => {
         }
         setIsLoading(false);
     }, [searchQuery]);
+
+    useEffect(() => {
+        const getAppointmentId = LocalStorage.get('AppointmentDetails');
+        setAppointmentId(getAppointmentId?.appointmentId); // Added closing parenthesis
+    }, []);    
 
     if (isLoading) {
         return <PageLoader />;
@@ -66,9 +73,9 @@ const BookApointments = () => {
                 </div>
                 {/* Form */}
                 <div className="w-full col-span-10 mt-10 px-7">
-                    {activeStep === 1 && <PatientDetails />}
+                    {activeStep === 1 && <PatientDetails appointmentId={appointmentId} />}
                     {activeStep === 2 && <ChooseDoctor />}
-                    {activeStep === 3 && <AppointmentDetails />}
+                    {activeStep === 3 && <AppointmentDetails appointmentId={appointmentId} />}
                     {activeStep === 4 && <Confirmation />}
                     {activeStep === 5 && <Payment />}
                 </div>

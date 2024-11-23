@@ -17,6 +17,7 @@ import useHeader from './hooks/useHeader'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import Loader from '@/widgets/Loader'
 import TextToImage from '@/widgets/TextToImage'
+import { backendUrl } from '@/lib/constant'
 
 const Header = () => {
 
@@ -27,7 +28,7 @@ const Header = () => {
     const { theme } = useTheme();
 
     const { user, logout, loading } = useHeader();
-    const { emailId, firstName, profilePic } = user;
+    const { emailId, personalInfo } = user;
 
     useEffect(() => {
         const authenticated = isAuthenticated();
@@ -84,13 +85,11 @@ const Header = () => {
                         <DropdownMenu>
                             <DropdownMenuTrigger>
                                 <div className="rounded-full md:hidden overflow-hidden cursor-pointer border-2 border-primary  relative group shadow-md shadow-gray-900">
-                                    {profilePic ? (
-                                        <Image
-                                            src="https://images.unsplash.com/photo-1685903772095-f07172808761?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" // Replace with your image path
+                                    {personalInfo?.profileImg ? (
+                                        <img
+                                            src={`${backendUrl}/${personalInfo?.profileImg}`}
                                             alt="User Profile"
-                                            layout="responsive"
-                                            width={40}
-                                            height={40}
+                                            className='w-10 h-10'
                                         />
                                     ) : (
                                         <TextToImage nameText={emailId} />
@@ -137,15 +136,12 @@ const Header = () => {
                         ) : (
                             <DropdownMenu>
                                 <DropdownMenuTrigger asChild>
-                                    <div className=" rounded-full overflow-hidden cursor-pointer border-2 border-primary  relative group shadow-md shadow-gray-900">
-                                        {profilePic ? (
-
-                                            <Image
-                                                src="https://images.unsplash.com/photo-1685903772095-f07172808761?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" // Replace with your image path
+                                    <div className=" rounded-full overflow-hidden cursor-pointer  relative group shadow-md shadow-gray-900">
+                                        {personalInfo?.profileImg ? (
+                                            <img
+                                                src={`${backendUrl}/${personalInfo?.profileImg}`}
                                                 alt="User Profile"
-                                                layout="responsive"
-                                                width={40}
-                                                height={40}
+                                                className='w-10 h-10'
                                             />
                                         ) : (
                                             <TextToImage nameText={emailId} />

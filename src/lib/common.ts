@@ -112,7 +112,7 @@ export const showToast = (
     });
 };
 
-export const dateTimeDisplay = (date: Date, locale = 'en', format = 'DD MMM YYYY hh:mm A') => {
+export const dateTimeDisplay = (date: Date, locale = 'en', format = 'DD MMM YYYY') => {
     if (date) {
       return dayjs(date).locale(locale).format(format);
     }

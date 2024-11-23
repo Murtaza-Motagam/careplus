@@ -3,6 +3,7 @@ import HrTag from '@/components/ui/HrTag'
 import { doctors } from '@/lib/common'
 import basicRoutes, { patientRoutes } from '@/lib/routes'
 import Button from '@/widgets/Button'
+import NextLink from '@/widgets/NextLink'
 import PageLoader from '@/widgets/PageLoader'
 import AuthWrapper from '@/Wrappers/AuthWrapper'
 import Image from 'next/image'
@@ -43,11 +44,11 @@ const Home = () => {
               </div>
 
               <div className="mt-8 gap-3 flex justify-center">
-                <Button
+                <NextLink
                   title='Book Appointment'
-                  className='dark:text-white rounded-full pl-4'
+                  className='dark:text-white rounded-full bg-blue-500'
                   icon={<svg className="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6" /></svg>}
-                  onClick={() => router.push(patientRoutes.bookAppointment)}
+                  href={patientRoutes.bookAppointment}
                 />
                 <Button
                   title='Explore platform'

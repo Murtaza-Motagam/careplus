@@ -45,6 +45,7 @@ const Login = () => {
                                 label='Email'
                                 placeholder='Enter email address'
                                 type='email'
+                                showInline
                                 errors={errors?.email?.message}
                             />
                             <PasswordInput
@@ -63,7 +64,10 @@ const Login = () => {
                                 className='w-full rounded-sm dark:text-white'
                             />
                         </form>
-                        <div className="my-6 text-center dark:text-gray-400"><NextLink title='Visit Home' className='text-primary hover:underline' href={basicRoutes.home} /> Or Login with</div>
+                        <div className="my-6 w-full flex items-center justify-center gap-x-2 text-center dark:text-gray-400">
+                            <span>Or Login with </span>
+                            <NextLink title='Visit Home' className='text-primary hover:underline !px-0 !py-0' href={basicRoutes.home} />
+                        </div>
                         <button className="w-full flex items-center justify-center border border-gray-300 py-2 rounded-md gap-x-2 dark:text-gray-200">
                             <GoogleLogo />
                             Login with Google

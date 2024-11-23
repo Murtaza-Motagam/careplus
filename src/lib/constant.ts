@@ -3,6 +3,7 @@
 
 // export const baseUrl = publicRuntimeConfig.NEXT_PUBLIC_FETCH_URL;
 export const baseUrl = process.env.NEXT_PUBLIC_FETCH_URL;
+export const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 export const PROTECTED_ROUTES = [
     '/about',
@@ -27,6 +28,16 @@ export const genderOption = [
     { value: 'male', label: 'Male' },
     { value: 'female', label: 'Female' },
     { value: 'other', label: 'Other' }
+];
+
+export const appointmentOption = [
+    { value: 'physical', label: 'Physical' },
+    { value: 'virtual', label: 'Virtual' }
+];
+
+export const maritalOption = [
+    { value: 'single', label: 'Single' },
+    { value: 'married', label: 'Married' }
 ];
 
 export const statesOption = [

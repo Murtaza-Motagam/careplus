@@ -23,7 +23,7 @@ const TextToImage: React.FC<TextToImageProps> = ({ nameText = '', className, has
 
     return (
         <p
-            className={`w-10 h-10 flex items-center justify-center bg-primary rounded-ful text-lg !w-fit'} font-bold !text-white transform cursor-pointer leading-[3rem]${className} `}
+            className={`w-10 h-10 flex items-center justify-center bg-primary rounded-ful text-lg font-bold !text-white transform cursor-pointer leading-[3rem] ${className} `}
         >
             {capitalizeFirstLetter(twoLetter)}
         </p>

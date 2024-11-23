@@ -23,18 +23,18 @@ const DatePicker: React.FC<DatePickerProps> = ({ name, label, control, placehold
 
     return (
         <Popover>
-            <div className="w-full flex flex-col gap-2">
+            <div className=" flex flex-col gap-2">
                 <Label className='text-gray-900 dark:text-gray-300'>{label}</Label>
                 <PopoverTrigger asChild>
                     <Button
                         variant="outline"
-                        className="w-[240px] justify-start text-left font-normal"
+                        className="w-full justify-start text-left font-normal"
                         icon={<CalendarIcon />}
                         title={value ? dateTimeDisplay(value) : placeholder}
                     />
                 </PopoverTrigger>
             </div>
-            <PopoverContent className="" align="start">
+            <PopoverContent className="w-full" align="start">
                 <Calendar
                     mode="single"
                     selected={value}

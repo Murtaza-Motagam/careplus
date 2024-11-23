@@ -7,19 +7,13 @@ import { isAuthenticated } from '@/lib/common';
 import { useRouter } from 'next/navigation';
 import { authenticationRoutes } from '@/lib/routes';
 
-interface User {
-    emailId?: string | undefined;
-    firstName?: string;
-    profilePic?: string;
-}
-
 const useHeader = () => {
     const [loading, setLoading] = useState(false);
-    const [user, setUser] = useState<User>({});
+    const [user, setUser] = useState<any>({});
     const authenticated = isAuthenticated();
     const router = useRouter();
 
-    const patientUrl = `${baseUrl}/${LOGIN_TYPE.patient}/auth/get-patient`;
+    const patientUrl = `${baseUrl}/${LOGIN_TYPE.patient}/get-patient`;
     const physicianUrl = `${baseUrl}/${LOGIN_TYPE.physician}/auth/get-physician`;
 
     const checkForModule = LocalStorage.get('authDetails');

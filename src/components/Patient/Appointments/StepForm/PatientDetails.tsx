@@ -9,8 +9,12 @@ import { citiesOption, genderOption, statesOption } from '@/lib/constant';
 import SingleSelect from '@/widgets/SingleSelect';
 import Loader from '@/widgets/Loader';
 
-const PatientDetails: React.FC = () => {
-  const { hookform, onsubmit, loading } = usePatientDetail();
+interface PatientDetailType {
+  appointmentId?: Number;
+}
+
+const PatientDetails: React.FC<PatientDetailType> = ({ appointmentId }) => {
+  const { hookform, onsubmit, loading } = usePatientDetail({ appointmentId });
   const { register, handleSubmit, errors, control } = hookform;
 
   return (
@@ -71,14 +75,6 @@ const PatientDetails: React.FC = () => {
           label="City"
           placeholder="Select your city"
           error={errors.cityNm?.message}
-        />
-        <Input
-          rest={register('address')}
-          label='Address'
-          placeholder='Enter full address'
-          className='rounded-[3px]'
-          type='text'
-          errors={errors?.address?.message}
         />
       </div>
       <div className="w-full mt-10 flex items-center justify-center">

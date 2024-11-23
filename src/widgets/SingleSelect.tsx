@@ -13,6 +13,7 @@ import {
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Label } from "@/components/ui/label";
 import { Controller } from "react-hook-form";
+import InfoIcon from "@/Icons/InfoIcon";
 
 interface Option {
   value: string;
@@ -26,6 +27,7 @@ interface SingleSelectProps {
   label?: string;
   placeholder?: string;
   error?: string;
+  dropdownClasses?: string;
   searchError?: string;
 }
 
@@ -36,13 +38,14 @@ const SingleSelect: React.FC<SingleSelectProps> = ({
   label,
   placeholder = "Select an option...",
   error,
+  dropdownClasses,
   searchError,
 }) => {
   const [open, setOpen] = useState(false);
 
   return (
-    <div>
-      {label && <Label htmlFor={name}>{label}</Label>}
+    <div className="flex flex-col">
+      {label && <Label htmlFor={name} className='!mb-2'>{label}</Label>}
       <Controller
         name={name}
         control={control}
@@ -62,7 +65,7 @@ const SingleSelect: React.FC<SingleSelectProps> = ({
                   <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                 </Button>
               </PopoverTrigger>
-              <PopoverContent className="w-[200px] p-0">
+              <PopoverContent className={`w-[200px] p-0 ${dropdownClasses}`}>
                 <Command>
                   <CommandInput placeholder="Search..." />
                   <CommandList>
@@ -90,7 +93,12 @@ const SingleSelect: React.FC<SingleSelectProps> = ({
                 </Command>
               </PopoverContent>
             </Popover>
-            {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
+            {error && (
+              <div className="flex items-center justify-start mt-1">
+                <InfoIcon size={14} className="text-red-600" />
+                <p className="!ml-1 text-red-600 text-xs">{error}</p>
+              </div>
+            )}
           </>
         )}
       />

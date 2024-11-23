@@ -30,7 +30,7 @@ const Register = () => {
                             <span className='text-primary'> CAREPLUS</span>
                         </h2>
                         <p className="text-gray-400 mb-8 text-sm">Register to get unlimited access to data & information.</p>
-                        <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
+                        <form className='space-y-6' onSubmit={handleSubmit(onSubmit)}>
                             <div className="flex items-center space-x-4">
                                 <Radio
                                     label="Patient"
@@ -50,6 +50,7 @@ const Register = () => {
                                 label='Email'
                                 placeholder='Enter email address'
                                 type='email'
+                                showInline
                                 errors={errors?.email?.message}
                             />
                             <PasswordInput
@@ -74,7 +75,10 @@ const Register = () => {
                                 className='w-full rounded-sm dark:text-white'
                             />
                         </form>
-                        <div className="my-6 text-center text-gray-400"><NextLink title='Visit Home' className='text-primary hover:underline' href={basicRoutes.home} /> Or Signup with</div>
+                        <div className="my-6 w-full flex items-center justify-center gap-x-2 text-center dark:text-gray-400">
+                            <span>Or Login with </span>
+                            <NextLink title='Visit Home' className='text-primary hover:underline !px-0 !py-0' href={basicRoutes.home} />
+                        </div>
                         <button className="w-full flex items-center justify-center border border-gray-300 py-2 rounded-md  gap-x-2 dark:text-gray-200">
                             <GoogleLogo />
                             Sign up with Google

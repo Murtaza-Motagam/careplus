@@ -19,5 +19,16 @@ export const patientDetailSchema = yup.object().shape({
     cityId: yup.string().optional(),
     stateNm: yup.string().trim().required('State is required'),
     stateId: yup.string().optional(),
-    address: yup.string().trim().required('Address is required'),
+});
+
+export const appointmentDetailSchema = yup.object().shape({
+    appointmentDateTime: yup
+        .date()
+        .required('Appointment Date is required')
+        .typeError('Invalid date format'),
+    reasonForVisit: yup.string().required('Reason for visit is required'),
+    appointmentStatus: yup.string().optional(),
+    location: yup.string().trim().required('Address is required'),
+    appointmentType: yup.string().trim().required('Appointment type is required'),
+    notes: yup.string().trim().optional(),
 });

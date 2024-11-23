@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { patientDetailSchema } from '@/schema/appointmentSchema';
-import { AppointmentProps } from '@/types/Index';
+import { PatientProps } from '@/types/Index';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
@@ -11,7 +11,7 @@ import { showToast } from '@/lib/common';
 import { LocalStorage } from '@/lib/localStorage';
 
 
-const defaultValues: AppointmentProps = {
+const defaultValues: PatientProps = {
     fullName: '',
     dob: new Date(),
     genderId: '',
@@ -22,29 +22,32 @@ const defaultValues: AppointmentProps = {
     cityNm: '',
     stateId: '',
     stateNm: '',
-    address: '',
 }
 
-const usePatientDetail = () => {
+const usePatientDetail = ({ appointmentId }: { appointmentId: Number | undefined }) => {
 
     const [loading, setLoading] = useState(false);
     const router = useRouter();
     const checkForModule = LocalStorage.get('authDetails');
+    const getLocalData = LocalStorage.get('AppointmentDetails');
+    const patientData = getLocalData?.patientDetails;
 
-    const { register, handleSubmit, setValue, trigger, clearErrors, watch, reset, control, formState: { errors } } = useForm<AppointmentProps>({
+    const { register, handleSubmit, setValue, trigger, clearErrors, watch, reset, control, formState: { errors } } = useForm<PatientProps>({
         resolver: yupResolver(patientDetailSchema),
         defaultValues,
     });
 
-    const onsubmit = async (data: AppointmentProps) => {
+    const onsubmit = async (data: PatientProps) => {
         setLoading(true)
-        const { fullName, email, address, dob, cityNm, stateNm, mobNo, genderNm } = data;
+        const { fullName, email, dob, cityNm, stateNm, mobNo, genderNm } = data;
         try {
-            const url = `${baseUrl}/patient/appointment/patient-details`;
+            const url = `${baseUrl}/patient/appointment/patient-details${appointmentId && `?appointmentId=${appointmentId}`}`;
             const response = await axios({
                 url,
                 data: {
-                    fullName, emailId: email, address, dateOfBirth: dob, city: cityNm, state: stateNm, mobNo, gender: genderNm
+                    patientDetails: {
+                        fullName, emailId: email, dateOfBirth: dob, city: cityNm, state: stateNm, mobNo, gender: genderNm
+                    }
                 },
                 method: 'post',
                 headers: {
@@ -53,7 +56,11 @@ const usePatientDetail = () => {
             });
             const resData = response.data;
             showToast(resData?.message, resData?.success === true ? 'success' : 'error');
-            LocalStorage.setJSON('patient-details', resData?.data?.patientDetails)
+            const saveDetails = {
+                patientDetails: resData?.appointment?.patientDetails,
+                appointmentId: resData?.appointment?.appointmentId
+            }
+            LocalStorage.setJSON('AppointmentDetails', saveDetails)
             router.push(`${patientRoutes.bookAppointment}?tab=2`);
             reset(defaultValues)
         } catch (err) {
@@ -64,6 +71,20 @@ const usePatientDetail = () => {
     }
 
     const hookform = { register, handleSubmit, setValue, clearErrors, trigger, watch, control, errors };
+
+    useEffect(()=>{
+        console.log('appointmentId: ', appointmentId);
+        if(appointmentId !== 0){
+            setValue('fullName', patientData?.fullName);
+            setValue('dob', patientData?.dateOfBirth);
+            setValue('genderNm', patientData?.gender || '');
+            setValue('mobNo', patientData?.mobNo || '');
+            setValue('email', patientData?.emailId || '');
+            setValue('cityNm', patientData?.city || ''); 
+            setValue('stateNm', patientData?.state || '');
+            
+        }
+    }, [])
 
     return {
         hookform,
