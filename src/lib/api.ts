@@ -6,6 +6,7 @@ interface ApiRequestArgs {
     method?: Method; 
     params?: Record<string, any>;
     data?: Record<string, any>;
+    headers?: Record<string, any>;
 }
 
 const apiRequest = async <T = any>({
@@ -13,6 +14,7 @@ const apiRequest = async <T = any>({
     method = 'get',
     params = {},
     data = {},
+    headers,
 }: ApiRequestArgs): Promise<T> => {
     try {
         // Retrieve the Authorization token or any headers from local storage
@@ -24,6 +26,7 @@ const apiRequest = async <T = any>({
             method,
             headers: {
                 Authorization: token ? `${token?.authorization}` : '',
+                ...headers
             },
             params,
             data,

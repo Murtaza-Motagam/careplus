@@ -5,10 +5,11 @@ import { UserResponse } from '@/types/Index';
 
 const usePatientProfile = () => {
     const [patientDetail, setPatientDetail] = useState<any>([]);
-    const [loading, setLoading] = useState<boolean>();
+    const [loading, setLoading] = useState<any>();
 
     const getPatient = async () => {
         try {
+            setLoading(true);
             const url = `${baseUrl}/patient/get-patient`
 
             // Specify the expected response type
@@ -18,6 +19,7 @@ const usePatientProfile = () => {
             });
 
             setPatientDetail(userDetails?.details);
+            setLoading(false);
         } finally {
             setLoading(false);
         }
@@ -30,7 +32,8 @@ const usePatientProfile = () => {
 
     return {
         patientDetail,
-        getPatient
+        getPatient,
+        loading,
     }
 }
 

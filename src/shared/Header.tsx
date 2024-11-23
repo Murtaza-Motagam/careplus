@@ -4,7 +4,7 @@ import basicRoutes, { authenticationRoutes, patientRoutes } from '@/lib/routes'
 import Button from '@/widgets/Button'
 import NextLink from '@/widgets/NextLink'
 import HamburgerIcon from '@/Icons/HamburgerIcon'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import MobileHeader from './MobileHeader'
 import { ModeToggle } from '@/components/ui/ModeToggle'
@@ -21,19 +21,12 @@ import { backendUrl } from '@/lib/constant'
 
 const Header = () => {
 
-    const [isUser, setIsUser] = useState<boolean>(false);
-
     const router = useRouter();
     const pathname = usePathname();
     const { theme } = useTheme();
 
-    const { user, logout, loading } = useHeader();
+    const { user, isUser, logout, loading } = useHeader();
     const { emailId, personalInfo } = user;
-
-    useEffect(() => {
-        const authenticated = isAuthenticated();
-        setIsUser(authenticated);
-    }, [])
 
     return (
         <header className="w-full flex items-center justify-between p-4 shadow-md sticky top-0 backdrop-blur-lg z-20">
@@ -70,7 +63,9 @@ const Header = () => {
                     </Sheet>
                 </div>
                 {loading ? (
-                    <Loader />
+                    <div className="md:hidden">
+                        <Loader />
+                    </div>
                 ) : (
                     !isUser ? (
                         <Button
@@ -87,7 +82,7 @@ const Header = () => {
                                 <div className="rounded-full md:hidden overflow-hidden cursor-pointer border-2 border-primary  relative group shadow-md shadow-gray-900">
                                     {personalInfo?.profileImg ? (
                                         <img
-                                            src={`${backendUrl}/${personalInfo?.profileImg}`}
+                                            src={`${backendUrl}${personalInfo?.profileImg}`}
                                             alt="User Profile"
                                             className='w-10 h-10'
                                         />
@@ -123,53 +118,52 @@ const Header = () => {
                     <ModeToggle />
                     {loading ? (
                         <Loader />
+                    ) : !isUser && !loading ? (
+                        <Button
+                            icon={
+                                <LoginIcon className='' />
+                            }
+                            onClick={() => router.push(authenticationRoutes.login)}
+                            title='Login'
+                            className='rounded-[6px] px-5 font-semibold text-sm dark:text-white'
+                        />
                     ) : (
-                        !isUser ? (
-                            <Button
-                                icon={
-                                    <LoginIcon className='' />
-                                }
-                                onClick={() => router.push(authenticationRoutes.login)}
-                                title='Login'
-                                className='rounded-[6px] px-5 font-semibold text-sm dark:text-white'
-                            />
-                        ) : (
-                            <DropdownMenu>
-                                <DropdownMenuTrigger asChild>
-                                    <div className=" rounded-full overflow-hidden cursor-pointer  relative group shadow-md shadow-gray-900">
-                                        {personalInfo?.profileImg ? (
-                                            <img
-                                                src={`${backendUrl}/${personalInfo?.profileImg}`}
-                                                alt="User Profile"
-                                                className='w-10 h-10'
-                                            />
-                                        ) : (
-                                            <TextToImage nameText={emailId} />
-                                        )}
-                                        <div className="absolute inset-0 bg-primary opacity-0 group-hover:opacity-20 transition-opacity duration-300 rounded-full"></div>
-                                    </div>
-                                </DropdownMenuTrigger>
-                                <DropdownMenuContent className="w-56 mr-10">
-                                    <DropdownMenuLabel className='dark:text-gray-200'>My Account</DropdownMenuLabel>
-                                    <p className='text-xs ml-2 dark:text-gray-400'>{emailId}</p>
-                                    <DropdownMenuSeparator className='bg-gray-200 mb-3 dark:bg-gray-800 mt-2' />
-                                    <DropdownMenuGroup>
-                                        <DropdownMenuItem
-                                            className='cursor-pointer dark:text-gray-200 dark:hover:text-white'
-                                            onClick={() => router.push(patientRoutes.profile)}
-                                        >
-                                            My Profile
-                                        </DropdownMenuItem>
-                                    </DropdownMenuGroup>
+                        <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                                <div className=" rounded-full overflow-hidden cursor-pointer  relative group shadow-md shadow-gray-900">
+                                    {personalInfo?.profileImg ? (
+                                        <img
+                                            src={`${backendUrl}${personalInfo?.profileImg}`}
+                                            alt="User Profile"
+                                            className='w-10 h-10'
+                                        />
+                                    ) : (
+                                        <TextToImage nameText={emailId} />
+                                    )}
+                                    <div className="absolute inset-0 bg-primary opacity-0 group-hover:opacity-20 transition-opacity duration-300 rounded-full"></div>
+                                </div>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent className="w-56 mr-10">
+                                <DropdownMenuLabel className='dark:text-gray-200'>My Account</DropdownMenuLabel>
+                                <p className='text-xs ml-2 dark:text-gray-400'>{emailId}</p>
+                                <DropdownMenuSeparator className='bg-gray-200 mb-3 dark:bg-gray-800 mt-2' />
+                                <DropdownMenuGroup>
                                     <DropdownMenuItem
-                                        className='text-red-500 hover:!text-red-500 cursor-pointer'
-                                        onClick={() => logout()}
+                                        className='cursor-pointer dark:text-gray-200 dark:hover:text-white'
+                                        onClick={() => router.push(patientRoutes.profile)}
                                     >
-                                        Logout
+                                        My Profile
                                     </DropdownMenuItem>
-                                </DropdownMenuContent>
-                            </DropdownMenu>
-                        ))}
+                                </DropdownMenuGroup>
+                                <DropdownMenuItem
+                                    className='text-red-500 hover:!text-red-500 cursor-pointer'
+                                    onClick={() => logout()}
+                                >
+                                    Logout
+                                </DropdownMenuItem>
+                            </DropdownMenuContent>
+                        </DropdownMenu>
+                    )}
                 </div>
             </div >
         </header >

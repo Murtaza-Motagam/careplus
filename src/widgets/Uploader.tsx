@@ -30,7 +30,6 @@ const Uploader: React.FC<FileUploadProps> = ({
           (acceptedFiles: File[]) => {
             const file = acceptedFiles[0]; // Only handle the first file
             if (file) {
-              console.log('file: ', file);
               setPreview(URL.createObjectURL(file)); // Generate preview URL
               onChange(file); // Update the field value with the single file
             }

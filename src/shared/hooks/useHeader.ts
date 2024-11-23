@@ -8,32 +8,15 @@ import { useRouter } from 'next/navigation';
 import { authenticationRoutes } from '@/lib/routes';
 
 const useHeader = () => {
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState<boolean>(true);
     const [user, setUser] = useState<any>({});
-    const authenticated = isAuthenticated();
+    const [isUser, setIsUser] = useState<any>();
     const router = useRouter();
 
     const patientUrl = `${baseUrl}/${LOGIN_TYPE.patient}/get-patient`;
     const physicianUrl = `${baseUrl}/${LOGIN_TYPE.physician}/auth/get-physician`;
 
     const checkForModule = LocalStorage.get('authDetails');
-
-    const getUser = async () => {
-        try {
-            const response = await axios({
-                url: checkForModule?.module === LOGIN_TYPE.patient ? patientUrl : physicianUrl,
-                method: 'get',
-                headers: {
-                    Authorization: checkForModule?.authorization
-                }
-            });
-            const resData = response.data;
-            setUser(resData?.details || '');
-
-        } finally {
-            setLoading(false);
-        }
-    }
 
     const logout = () => {
         Cookies.remove('Authorization-token');
@@ -42,15 +25,33 @@ const useHeader = () => {
     };
 
     useEffect(() => {
-        if (authenticated) {
-            getUser();
+        const getUser = async () => {
+            const authenticated = isAuthenticated();
+            if (authenticated) {
+                setIsUser(authenticated)
+                const response = await axios({
+                    url: checkForModule?.module === LOGIN_TYPE.patient ? patientUrl : physicianUrl,
+                    method: 'get',
+                    headers: {
+                        Authorization: checkForModule?.authorization
+                    }
+                });
+                const resData = response.data;
+                setUser(resData?.details || '');
+            } else {
+                setIsUser(false);
+            }
+            setLoading(false);
         }
+
+        getUser();
     }, [])
 
     return {
         loading,
         user,
         logout,
+        isUser
     }
 }
 
