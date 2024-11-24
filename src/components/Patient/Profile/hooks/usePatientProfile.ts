@@ -3,8 +3,19 @@ import apiRequest from '@/lib/api';
 import { baseUrl } from '@/lib/constant';
 import { UserResponse } from '@/types/Index';
 
+interface detailProps {
+    medicalDetails?: boolean;
+    lifeStyleDetails?: boolean;
+    insuranceDetails?: boolean;
+}
+
 const usePatientProfile = () => {
     const [patientDetail, setPatientDetail] = useState<any>([]);
+    const [detailModal, setDetailModal] = useState<detailProps>({
+        medicalDetails: false,
+        lifeStyleDetails: false,
+        insuranceDetails: false,
+    });
     const [loading, setLoading] = useState<any>();
 
     const getPatient = async () => {
@@ -34,6 +45,8 @@ const usePatientProfile = () => {
         patientDetail,
         getPatient,
         loading,
+        detailModal, 
+        setDetailModal
     }
 }
 

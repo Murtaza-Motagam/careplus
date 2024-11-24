@@ -168,10 +168,10 @@ export const statistics = [
 ];
 
 export const profileDetailContainer = [
-    { name: 'Total Appointments', icon: Calendar},
-    { name: 'Medical details', icon: Cross},
-    { name: 'Lifestyle details', icon: HandHeart},
-    { name: 'Certified Doctors', icon: BriefcaseMedical},
-    { name: 'Billings', icon: Receipt},
-    { name: 'Insurance Details', icon: HandCoins},
+    { name: 'Total Appointments', icon: Calendar, type: 'appointmentDetails' },
+    { name: 'Medical details', icon: Cross, type: 'medicalDetails' },
+    { name: 'Lifestyle details', icon: HandHeart, type: 'lifeStyleDetails' },
+    { name: 'Certified Doctors', icon: BriefcaseMedical },
+    { name: 'Billings', icon: Receipt },
+    { name: 'Insurance Details', icon: HandCoins, type: 'insuranceDetails' },
 ]

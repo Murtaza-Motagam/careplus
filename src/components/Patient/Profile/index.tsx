@@ -15,12 +15,20 @@ import TextToImage from '@/widgets/TextToImage'
 import BasicDetails from './fields/BasicDetails'
 import { dateTimeDisplay } from '@/lib/common'
 import PageLoader from '@/widgets/PageLoader'
+import BoxDrawer from '@/widgets/BoxDrawer'
+
+export const patientProfileDetails = {
+  medicalDetails: 'medicalDetails',
+  lifeStyleDetails: 'lifeStyleDetails',
+  insuranceDetails: 'insuranceDetails',
+}
 
 const Profile = () => {
 
   const { patientDetail, getPatient, loading, ...dt } = usePatientProfile();
   const [openPdetail, setOpenPdetail] = useState<boolean>(false);
   const [openBdetail, setOpenBdetail] = useState<boolean>(false);
+  const [modalType, setModalType] = useState<string>('');
 
   const closePersonalDetail = () => {
     setOpenPdetail(false);
@@ -29,6 +37,23 @@ const Profile = () => {
   const closeBasicDetail = () => {
     setOpenBdetail(false);
   }
+
+  const handleDetailOpen = (type: any) => {
+    dt?.setDetailModal((prevType) => ({
+      ...prevType,
+      [type]: true
+    }));
+    setModalType(type);
+  }
+
+  const handleDetailClose = (type: any) => {
+    dt?.setDetailModal((prevType) => ({
+      ...prevType,
+      [type]: false
+    }));
+    setModalType('');
+  }
+
   if (loading) {
     return (
       <PageLoader />
@@ -124,7 +149,7 @@ const Profile = () => {
                       <div className="w-full grid grid-cols-3 gap-5">
                         {profileDetailContainer.map((dt, ind) => {
                           return (
-                            <div key={ind} className="flex items-center justify-between gap-x-3 w-full border p-5 rounded-[6px] cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800">
+                            <div onClick={() => handleDetailOpen(dt.type)} key={ind} className="flex items-center justify-between gap-x-3 w-full border p-5 rounded-[6px] cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800">
                               <div className="flex items-center justify-start gap-x-3 dark:text-gray-200">
                                 {dt.icon && <span><dt.icon className='text-primary' /></span>}
                                 <span>{dt.name}</span>
@@ -141,6 +166,26 @@ const Profile = () => {
                       <BasicDetails reloadFunc={getPatient} closeModal={closeBasicDetail} detail={patientDetail} />
                     </AddDetailModal>
                   </Dialog>
+
+                  {/* Detail Modals */}
+
+                  <BoxDrawer
+                    open={dt.detailModal.medicalDetails}
+                    onClose={() => handleDetailClose(modalType)}
+                    type={patientProfileDetails.medicalDetails}
+                  />
+
+                  <BoxDrawer
+                    open={dt.detailModal.lifeStyleDetails}
+                    onClose={() => handleDetailClose(modalType)}
+                    type={patientProfileDetails.lifeStyleDetails}
+                  />
+
+                  <BoxDrawer
+                    open={dt.detailModal.insuranceDetails}
+                    onClose={() => handleDetailClose(modalType)}
+                    type={patientProfileDetails.insuranceDetails}
+                  />
 
                 </div>
               </div>
