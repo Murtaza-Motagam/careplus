@@ -1,12 +1,10 @@
-import AuthWrapper from '@/Wrappers/AuthWrapper'
+import About from '@/components/AboutUs'
 import React from 'react'
 
-const AboutUs = () => {
+const AboutPage = () => {
     return (
-        <AuthWrapper>
-            About us page
-        </AuthWrapper>
+        <About />
     )
 }
 
-export default AboutUs
+export default AboutPage

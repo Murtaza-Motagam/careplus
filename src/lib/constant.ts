@@ -4,6 +4,8 @@
 // export const baseUrl = publicRuntimeConfig.NEXT_PUBLIC_FETCH_URL;
 export const baseUrl = process.env.NEXT_PUBLIC_FETCH_URL;
 export const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+import React from 'react'
+import { BriefcaseMedical, Calendar, Cross, HandCoins, HandHeart, Receipt, ShieldCheck, User } from 'lucide-react'
 
 export const PROTECTED_ROUTES = [
     '/about',
@@ -14,7 +16,13 @@ export const PROTECTED_ROUTES = [
     '/patient/profile',
     '/physician/home',
     '/physician/profile',
-]
+];
+
+export const theme_type = {
+    dark: 'dark',
+    light: 'light',
+    system: 'system',
+};
 
 export const appointmentStepper = [
     { index: 1, name: "Patient Information", subtext: "Fill details" },
@@ -133,3 +141,37 @@ export const LOGIN_TYPE = {
     patient: 'patient',
     physician: 'physician'
 }
+
+// Explore page constants
+
+export const statistics = [
+    {
+        title: 'Total Signups',
+        value: 30000,
+        icon: BriefcaseMedical,
+    },
+    {
+        title: 'Total Patient',
+        value: 27000,
+        icon: User,
+    },
+    {
+        title: 'Total Appointments',
+        value: 1520,
+        icon: Cross,
+    },
+    {
+        title: 'Security Level',
+        value: 5000,
+        icon: ShieldCheck
+    },
+];
+
+export const profileDetailContainer = [
+    { name: 'Total Appointments', icon: Calendar},
+    { name: 'Medical details', icon: Cross},
+    { name: 'Lifestyle details', icon: HandHeart},
+    { name: 'Certified Doctors', icon: BriefcaseMedical},
+    { name: 'Billings', icon: Receipt},
+    { name: 'Insurance Details', icon: HandCoins},
+]

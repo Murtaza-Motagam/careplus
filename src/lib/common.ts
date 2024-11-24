@@ -8,10 +8,6 @@ export const navLinks = [
         href: '/patient/appointments',
     },
     {
-        name: 'Explore',
-        href: '/explore',
-    },
-    {
         name: 'Services',
         href: '/services',
     },

@@ -3,7 +3,7 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import { LocalStorage } from '@/lib/localStorage';
 import React, { useEffect, useState } from 'react'
-import { isAuthenticated } from '@/lib/common';
+import { isAuthenticated, showToast } from '@/lib/common';
 import { useRouter } from 'next/navigation';
 import { authenticationRoutes } from '@/lib/routes';
 
@@ -22,6 +22,7 @@ const useHeader = () => {
         Cookies.remove('Authorization-token');
         LocalStorage.remove('authDetails');
         router.push(authenticationRoutes.login);
+        showToast('You have successfully logged out. See you again soon!');
     };
 
     useEffect(() => {

@@ -42,7 +42,7 @@ const Header = () => {
                 </div>
             </div>
 
-            <div className="hidden md:flex links items-center gap-x-7">
+            <div className="hidden md:flex links items-center gap-x-2">
                 {navLinks.map((li) => {
                     return (
                         <NextLink key={li.href} title={li.name} href={li.href} className={getActiveClass(li.href, pathname, theme)} />
