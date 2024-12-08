@@ -1,10 +1,9 @@
-import React from 'react'
 import { loginSchema } from '@/schema/authentication';
-import { loginValues, RegisterValues } from '@/types/Index';
+import { loginValues} from '@/types/Index';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useState } from 'react';
-import { baseUrl, LOGIN_TYPE } from '@/lib/constant';
+import { baseUrl } from '@/lib/constant';
 import axios from 'axios'
 import { showToast } from '@/lib/common';
 import Cookies from 'js-cookie';
@@ -17,7 +16,6 @@ const useLogin = () => {
     const router = useRouter();
 
     const defaultValues: loginValues = {
-        registerType: 'patient',
         email: '',
         password: '',
     }
@@ -29,13 +27,13 @@ const useLogin = () => {
 
     const onSubmit: SubmitHandler<loginValues> = async (data) => {
         setLoading(true);
-        const { registerType, email, password } = data;
+        const { email, password } = data;
         const loginPayload = {
             emailId: email,
             password: password
         }
         try {
-            const url = `${baseUrl}/${registerType === LOGIN_TYPE.patient ? LOGIN_TYPE.patient : LOGIN_TYPE.physician}/auth/login`;
+            const url = `${baseUrl}/auth/login`;
             const response = await axios({
                 url,
                 data: loginPayload,
@@ -57,6 +55,7 @@ const useLogin = () => {
             }
             reset(defaultValues)
         } catch (err) {
+            console.error('error: ', err);
             showToast('Some error has occurred. Please wait for some time', 'error')
         } finally {
             setLoading(false);

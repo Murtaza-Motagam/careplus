@@ -1,21 +1,14 @@
 // import getConfig from "next/config";
 // const { publicRuntimeConfig } = getConfig();
 
+import {  CalendarCheck,  DoorOpen, Earth, Star } from "lucide-react";
+
 // export const baseUrl = publicRuntimeConfig.NEXT_PUBLIC_FETCH_URL;
 export const baseUrl = process.env.NEXT_PUBLIC_FETCH_URL;
 export const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
-import React from 'react'
-import { BriefcaseMedical, Calendar, Cross, HandCoins, HandHeart, Receipt, ShieldCheck, User } from 'lucide-react'
 
 export const PROTECTED_ROUTES = [
-    '/about',
-    '/explore',
-    '/patient/home',
-    '/patient/appointments',
-    '/patient/appointments/book',
-    '/patient/profile',
-    '/physician/home',
-    '/physician/profile',
+    '/profile',
 ];
 
 export const theme_type = {
@@ -38,10 +31,6 @@ export const genderOption = [
     { value: 'other', label: 'Other' }
 ];
 
-export const appointmentOption = [
-    { value: 'physical', label: 'Physical' },
-    { value: 'virtual', label: 'Virtual' }
-];
 
 export const maritalOption = [
     { value: 'single', label: 'Single' },
@@ -133,45 +122,25 @@ export const citiesOption = [
     { value: "tirupur", label: "Tirupur", state: "Tamil Nadu" }
 ];
 
-
-export const patient = 'patient';
-export const physician = 'physician';
-
-export const LOGIN_TYPE = {
-    patient: 'patient',
-    physician: 'physician'
-}
-
-// Explore page constants
-
 export const statistics = [
     {
-        title: 'Total Signups',
+        title: 'Total Bookings',
+        value: 32000,
+        icon: CalendarCheck,
+    },
+    {
+        title: 'Total Rating',
+        value: 42000,
+        icon: Star,
+    },
+    {
+        title: 'Total Rooms',
         value: 30000,
-        icon: BriefcaseMedical,
+        icon: DoorOpen,
     },
     {
-        title: 'Total Patient',
-        value: 27000,
-        icon: User,
-    },
-    {
-        title: 'Total Appointments',
-        value: 1520,
-        icon: Cross,
-    },
-    {
-        title: 'Security Level',
+        title: 'Covered Cities',
         value: 5000,
-        icon: ShieldCheck
+        icon: Earth
     },
 ];
-
-export const profileDetailContainer = [
-    { name: 'Total Appointments', icon: Calendar, type: 'appointmentDetails' },
-    { name: 'Medical details', icon: Cross, type: 'medicalDetails' },
-    { name: 'Lifestyle details', icon: HandHeart, type: 'lifeStyleDetails' },
-    { name: 'Certified Doctors', icon: BriefcaseMedical },
-    { name: 'Billings', icon: Receipt },
-    { name: 'Insurance Details', icon: HandCoins, type: 'insuranceDetails' },
-]

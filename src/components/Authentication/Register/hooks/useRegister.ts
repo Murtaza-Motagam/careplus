@@ -1,5 +1,4 @@
-import React from 'react'
-import { baseUrl, LOGIN_TYPE } from '@/lib/constant';
+import { baseUrl } from '@/lib/constant';
 import { registerSchema } from '@/schema/authentication';
 import { RegisterValues } from '@/types/Index';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -18,7 +17,6 @@ const useRegister = () => {
     const router = useRouter();
 
     const defaultValues: RegisterValues = {
-        registerType: 'patient',
         email: '',
         password: '',
         confirmPassword: ''
@@ -33,14 +31,14 @@ const useRegister = () => {
 
     const onSubmit = async (data: RegisterValues) => {
         setLoading(true);
-        const { registerType, email, password, confirmPassword } = data;
+        const {  email, password, confirmPassword } = data;
         const loginPayload = {
             emailId: email,
             password: password
         }
         try {
             if(password === confirmPassword){
-                const url = `${baseUrl}/${registerType === LOGIN_TYPE.patient ? LOGIN_TYPE.patient : LOGIN_TYPE.physician}/auth/register`;
+                const url = `${baseUrl}/auth/register`;
                 const response = await axios({
                 url,
                 data: loginPayload,
@@ -65,6 +63,7 @@ const useRegister = () => {
             showToast("Both password doesn't match", 'error')
         }
         } catch (err) {
+            console.error('error: ', err);
             showToast('Some error has occurred. Please wait for some time', 'error')
         } finally {
             setLoading(false);

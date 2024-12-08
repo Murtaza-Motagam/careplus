@@ -4,8 +4,8 @@ import dayjs from 'dayjs';
 
 export const navLinks = [
     {
-        name: 'Appointments',
-        href: '/patient/appointments',
+        name: 'Bookings',
+        href: '/bookings',
     },
     {
         name: 'Services',
@@ -17,43 +17,27 @@ export const navLinks = [
     },
 ];
 
-export const doctors = [
+export const hotelCards = [
     {
-        name: 'Leslie Alexander',
-        position: 'Neurologist',
-        imageUrl:
-            'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+        title: "Benefits of Booking Hotels Online",
+        description: "Discover how online hotel booking simplifies your travel planning, offering convenience and exclusive deals from the comfort of your home.",
+        image: "https://plus.unsplash.com/premium_photo-1661964402307-02267d1423f5?q=80&w=1973&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
-        name: 'Michael Foster',
-        position: 'Cardiologist',
-        imageUrl:
-            'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+        title: "How Luxury Stays Enhance Travel Experiences",
+        description: "Explore how staying at luxury hotels transforms your journey into an unforgettable and relaxing experience.",
+        image: "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
-        name: 'Dries Vincent',
-        position: 'Orthopedic Surgeon',
-        imageUrl:
-            'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+        title: "The Future of Hospitality",
+        description: "Learn how technology and innovation are reshaping the hospitality industry, making hotel stays more personalized and efficient.",
+        image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
     {
-        name: 'Lindsay Walton',
-        position: 'Pediatrician',
-        imageUrl:
-            'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-    {
-        name: 'Courtney Henry',
-        position: 'Psychiatrist',
-        imageUrl:
-            'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-    {
-        name: 'Tom Cook',
-        position: 'General Practitioner',
-        imageUrl:
-            'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
+        title: "Top Tips for Booking the Perfect Hotel",
+        description: "Maximize your travel experience with our expert advice on finding the ideal hotel for your needs and budget.",
+        image: "https://plus.unsplash.com/premium_photo-1681922761648-d5e2c3972982?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    }
 ];
 
 export const isAuthenticated = () => {
@@ -85,7 +69,7 @@ const toastTypes: Record<ToastType, (message: string, options?: ToastOptions) =>
 
 export const capitalizeFirstLetter = (string: string) =>
     `${string?.charAt(0)?.toUpperCase()}${string?.slice(1)}`;
-  
+
 
 export const showToast = (
     message: string,
@@ -110,7 +94,7 @@ export const showToast = (
 
 export const dateTimeDisplay = (date: Date, locale = 'en', format = 'DD MMM YYYY') => {
     if (date) {
-      return dayjs(date).locale(locale).format(format);
+        return dayjs(date).locale(locale).format(format);
     }
-  };
-  
+};
+

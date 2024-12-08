@@ -2,10 +2,6 @@ import { passwordValidate } from '@/lib/regex';
 import * as yup from 'yup';
 
 export const registerSchema = yup.object().shape({
-    registerType: yup
-    .string()
-    .oneOf(['patient', 'physician'], 'Please select a register type')
-    .required('Register type is required'),
     email: yup.string().email("Invalid email address").required("Email is required"),
     password: yup
         .string()
@@ -17,10 +13,6 @@ export const registerSchema = yup.object().shape({
 });
 
 export const loginSchema = yup.object().shape({
-    registerType: yup
-    .string()
-    .oneOf(['patient', 'physician'], 'Please select a register type')
-    .required('Register type is required'),
     email: yup.string().email("Invalid email address").required("Email is required"),
     password: yup
         .string()

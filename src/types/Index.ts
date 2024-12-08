@@ -80,14 +80,12 @@ export interface LinkProps {
 }
 
 export interface RegisterValues {
-    registerType: 'patient' | 'physician';
     email: string;
     password: string;
     confirmPassword: string;
 }
 
 export interface loginValues {
-    registerType: 'patient' | 'physician';
     email: string;
     password: string;
 }

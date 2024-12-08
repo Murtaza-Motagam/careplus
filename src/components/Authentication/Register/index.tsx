@@ -1,6 +1,5 @@
 'use client';
 import React from 'react';
-import LoginImg from '@/assets/loginImage.jpg';
 import Image from 'next/image';
 import GoogleLogo from '@/Icons/GoogleLogo';
 import Input from '@/widgets/Input';
@@ -11,9 +10,6 @@ import LoginIcon from '@/Icons/LoginIcon';
 import PasswordInput from '@/widgets/PasswordInput';
 import useRegister from '../../../components/Authentication/Register/hooks/useRegister';
 import NextLink from '@/widgets/NextLink';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Label } from '@/components/ui/label';
-import Radio from '@/widgets/Radio';
 import { ReloadIcon } from '@radix-ui/react-icons';
 
 const Register = () => {
@@ -27,24 +23,10 @@ const Register = () => {
                 <div className="w-full md:w-1/2 flex flex-col justify-center items-center min-h-screen p-6 md:p-10">
                     <div className="max-w-sm w-full">
                         <h2 className="text-2xl md:text-3xl flex items-center gap-x-2 flex-wrap font-semibold">WELCOME TO
-                            <span className='text-primary'> CAREPLUS</span>
+                            <span className='text-primary'> TRAVIGO</span>
                         </h2>
                         <p className="text-gray-400 mb-8 text-sm">Register to get unlimited access to data & information.</p>
                         <form className='space-y-6' onSubmit={handleSubmit(onSubmit)}>
-                            <div className="flex items-center space-x-4">
-                                <Radio
-                                    label="Patient"
-                                    value="patient"
-                                    id="patient"
-                                    rest={register('registerType')}
-                                />
-                                <Radio
-                                    label="Physician"
-                                    value="physician"
-                                    id="physician"
-                                    rest={register('registerType')}
-                                />
-                            </div>
                             <Input
                                 rest={register('email')}
                                 label='Email'
@@ -90,7 +72,7 @@ const Register = () => {
                 </div>
                 <div className="hidden md:block relative w-1/2">
                     <Image
-                        src={LoginImg}
+                        src='https://images.unsplash.com/photo-1565031491910-e57fac031c41?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
                         alt="Background"
                         fill
                         className="object-contain"

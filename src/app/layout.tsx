@@ -5,8 +5,8 @@ import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
 export const metadata: Metadata = {
-  title: "Careplus, India's leading telehealth service provider",
-  description: "Careplus telehealth",
+  title: "Travigo, We compare hotel prices from 100s of sites",
+  description: "Travigo Bookings",
 };
 
 

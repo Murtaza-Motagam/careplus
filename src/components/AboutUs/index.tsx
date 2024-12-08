@@ -1,8 +1,9 @@
 'use client'
 import { statistics, theme_type } from '@/lib/constant';
 import AuthWrapper from '@/Wrappers/AuthWrapper'
-import { BriefcaseMedical, Cross, ShieldCheck } from 'lucide-react'
+import { CalendarCheck, Cloud, ShieldCheck } from 'lucide-react'
 import { useTheme } from 'next-themes';
+import Image from 'next/image';
 import React, { ElementType } from 'react'
 import CountUp from 'react-countup';
 
@@ -14,20 +15,20 @@ interface Feature {
 
 const features: Feature[] = [
     {
-        name: 'Effortless Appointment Scheduling',
+        name: 'Effortless Booking Management',
         description:
-            'Seamlessly book and manage appointments with user-friendly tools designed for patients and healthcare providers.',
-        icon: BriefcaseMedical,
+            'Seamlessly manage bookings with user-friendly tools designed for both guests and hotel staff.',
+        icon: CalendarCheck,
     },
     {
-        name: 'Secure Patient Data',
-        description: 'Ensure the highest level of data protection and HIPAA compliance for patient records with advanced security protocols.',
+        name: 'Secure Guest Information',
+        description: 'Ensure top-level security and compliance to protect guest data with advanced encryption protocols.',
         icon: ShieldCheck,
     },
     {
-        name: 'Reliable Medical Records Backup',
-        description: 'Safeguard vital medical information with automatic backups, ensuring easy access and continuity of care.',
-        icon: Cross,
+        name: 'Reliable Record Backup',
+        description: 'Safeguard essential hotel information with automatic backups, ensuring easy access and continuity in operations.',
+        icon: Cloud,
     },
 ]
 
@@ -42,15 +43,15 @@ const About = () => {
                 {/* Hero Section */}
                 <div className="overflow-hidden pt-10 pb-24">
                     <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                        <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
+                        <div className="mx-auto grid max-w-2xl grid-cols-1 place-items-center gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
                             <div className="lg:pr-8 lg:pt-4">
                                 <div className="lg:max-w-lg">
-                                    <h2 className="text-base/7 font-semibold text-primary">Careplus Telehealth</h2>
+                                    <h2 className="text-base/7 font-semibold text-primary">Travigo Bookings</h2>
                                     <p className="mt-2 text-pretty text-4xl font-semibold tracking-tight sm:text-5xl">
-                                        Deliver Care Faster
+                                        Deliver Exceptional Stays Faster
                                     </p>
                                     <p className="mt-6 text-lg/8 dark:text-gray-400">
-                                        Expedite critical processes and enhance patient outcomes with innovative healthcare solutions.
+                                        Enhance guest experiences and streamline operations with innovative solutions for modern hotel management.
                                     </p>
                                     <dl className="mt-10 max-w-xl space-y-8 text-base/7 dark:text-gray-400 lg:max-w-none">
                                         {features.map((feature) => (
@@ -65,9 +66,11 @@ const About = () => {
                                     </dl>
                                 </div>
                             </div>
-                            <img
+                            <Image
                                 alt="Product screenshot"
-                                src="https://images.pexels.com/photos/9951386/pexels-photo-9951386.jpeg?auto=compress&cs=tinysrgb&w=640&h=640&dpr=1"
+                                src="https://images.unsplash.com/photo-1529290130-4ca3753253ae?q=80&w=2076&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                width={1220}
+                                height={720}
                                 className="rounded-xl shadow-xl ring-1 ring-gray-400/10 md:-ml-4 lg:-ml-0"
                             />
                         </div>
@@ -178,7 +181,7 @@ const About = () => {
                 <div className="pb-10 mt-20">
                     <div className="mx-auto max-w-7xl px-6 lg:px-8">
                         <h2 className="text-center text-lg md:text-2xl font-semibold">
-                            Trusted by the world&apos;s most innovative teams
+                            Trusted by the world&apos;s most innovative brands
                         </h2>
                         <div className="mx-auto mt-10 grid max-w-lg grid-cols-4 items-center gap-x-8 gap-y-10 sm:max-w-xl sm:grid-cols-6 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-5">
                             <img
@@ -225,15 +228,15 @@ const About = () => {
                 <section className="">
                     <div className="container px-5 py-24 mx-auto">
                         <div className="flex flex-col text-center w-full mb-20">
-                            <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4"><span className="text-primary font-semibold">Careplus</span> Healthcare Insights at a Glance</h1>
-                            <p className="lg:w-2/3 mx-auto leading-relaxed text-base text-gray-700 dark:text-gray-300">Discover key metrics and trends that drive better patient outcomes and operational efficiency.</p>
+                            <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4"><span className="text-primary font-semibold">Travigo</span> Insights at a Glance</h1>
+                            <p className="lg:w-2/3 mx-auto leading-relaxed text-base text-gray-700 dark:text-gray-300">Discover key metrics and trends that enhance guest experiences and boost operational excellence.</p>
                         </div>
                         <div className="flex flex-wrap -m-4 text-center">
                             {statistics.map((st, ind) => {
                                 return (
                                     <div key={ind} className="p-4 md:w-1/4 sm:w-1/2 w-full">
                                         <div className="shadow-md shadow-gray-400 px-4 py-6 rounded-2xl">
-                                            {st.icon && <st.icon size={50} className='mx-auto mb-2 text-primary' /> }
+                                            {st.icon && <st.icon size={50} className='mx-auto mb-2 text-primary' />}
                                             <h2 className="font-bold text-3xl"> <CountUp end={st.value} duration={1.5} separator=","
                                                 formattingFn={(value) => `${(value / 1000).toFixed(1)}k`} /></h2>
                                             <p className="leading-relaxed">{st.title}</p>

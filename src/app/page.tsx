@@ -1,4 +1,4 @@
-import Home from '@/components/Homepage/Index'
+import Home from '@/components/Homepage'
 import React from 'react'
 
 const HomePage = () => {

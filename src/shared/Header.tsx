@@ -1,9 +1,8 @@
 'use client'
-import { getActiveClass, isAuthenticated, navLinks } from '@/lib/common'
-import basicRoutes, { authenticationRoutes, patientRoutes } from '@/lib/routes'
+import { getActiveClass, navLinks } from '@/lib/common'
+import basicRoutes, { authenticationRoutes } from '@/lib/routes'
 import Button from '@/widgets/Button'
 import NextLink from '@/widgets/NextLink'
-import HamburgerIcon from '@/Icons/HamburgerIcon'
 import React from 'react'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import MobileHeader from './MobileHeader'
@@ -18,6 +17,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem,
 import Loader from '@/widgets/Loader'
 import TextToImage from '@/widgets/TextToImage'
 import { backendUrl } from '@/lib/constant'
+import { Menu } from 'lucide-react'
 
 const Header = () => {
 
@@ -37,8 +37,8 @@ const Header = () => {
                     className='w-10 h-10'
                 />
                 <div className="flex flex-col">
-                    <h1 className='text-xl md:text-2xl font-extrabold text-primary'>Careplus</h1>
-                    <p className='hidden sm:block ml-4 text-[12px] font-medium text-foreground'>No.1 Telehealth Services</p>
+                    <h1 className='text-xl md:text-2xl font-extrabold text-primary'>Travigo</h1>
+                    <p className='hidden sm:block ml-4 text-[12px] font-medium text-foreground'>No.1 Booking platform</p>
                 </div>
             </div>
 
@@ -55,7 +55,7 @@ const Header = () => {
                     <ModeToggle />
                     <Sheet>
                         <SheetTrigger>
-                            <HamburgerIcon className='' size={20} />
+                            <Menu />
                         </SheetTrigger>
                         <SheetContent>
                             <MobileHeader />
@@ -99,7 +99,7 @@ const Header = () => {
                                 <DropdownMenuGroup>
                                     <DropdownMenuItem
                                         className='cursor-pointer dark:text-gray-200 dark:hover:text-white'
-                                        onClick={() => router.push(patientRoutes.profile)}
+                                        onClick={() => router.push(basicRoutes.profile)}
                                     >
                                         My Profile
                                     </DropdownMenuItem>
@@ -150,7 +150,7 @@ const Header = () => {
                                 <DropdownMenuGroup>
                                     <DropdownMenuItem
                                         className='cursor-pointer dark:text-gray-200 dark:hover:text-white'
-                                        onClick={() => router.push(patientRoutes.profile)}
+                                        onClick={() => router.push(basicRoutes.profile)}
                                     >
                                         My Profile
                                     </DropdownMenuItem>

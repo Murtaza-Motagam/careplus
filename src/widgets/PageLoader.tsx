@@ -2,19 +2,38 @@ import React from 'react'
 
 const PageLoader: React.FC = () => {
     return (
+        /* From Uiverse.io by vinodjangid07 */
         <div className="w-full h-[80vh] flex items-center justify-center">
-               <div className="loading">
-                <div className="loading-wide">
-                    <div className="l1 color"></div>
-                    <div className="l2 color"></div>
-                    <div className="e1 color animation-effect-light"></div>
-                    <div className="e2 color animation-effect-light-d"></div>
-                    <div className="e3 animation-effect-rot">X</div>
-                    <div className="e4 color animation-effect-light"></div>
-                    <div className="e5 color animation-effect-light-d"></div>
-                    <div className="e6 animation-effect-scale">*</div>
-                    <div className="e7 color"></div>
-                    <div className="e8 color"></div>
+
+            <div className="loader">
+                <div className="loaderMiniContainer">
+                    <div className="barContainer">
+                        <span className="bar"></span>
+                        <span className="bar bar2"></span>
+                    </div>
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 101 114"
+                        className="svgIcon"
+                    >
+                        <circle
+                            strokeWidth="7"
+                            stroke="black"
+                            transform="rotate(36.0692 46.1726 46.1727)"
+                            r="29.5497"
+                            cy="46.1727"
+                            cx="46.1726"
+                        ></circle>
+                        <line
+                            strokeWidth="7"
+                            stroke="black"
+                            y2="111.784"
+                            x2="97.7088"
+                            y1="67.7837"
+                            x1="61.7089"
+                        ></line>
+                    </svg>
                 </div>
             </div>
         </div>
